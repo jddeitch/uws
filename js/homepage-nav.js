@@ -1,16 +1,16 @@
 /**
  * Homepage-specific navigation behavior
  * Auto-hide/show nav based on scroll position (MOBILE ONLY)
- * Nav only appears when Subscribe button is COMPLETELY off screen
+ * Nav only appears when the Subscribe button is COMPLETELY off screen
  */
 
-// Wait for nav to be loaded by config.js before running
+// Wait for nav and button to be loaded
 setTimeout(function initHomeNav() {
     const nav = document.querySelector('nav');
-    const heroSection = document.querySelector('section'); // First section is hero
+    const subscribeBtn = document.getElementById('hero-subscribe-btn');
     
-    // If nav hasn't loaded yet, try again
-    if (!nav || !heroSection) {
+    // If nav or button hasn't loaded yet, try again
+    if (!nav || !subscribeBtn) {
         setTimeout(initHomeNav, 100);
         return;
     }
@@ -26,12 +26,12 @@ setTimeout(function initHomeNav() {
             return;
         }
         
-        // Get the bottom of the entire hero section
-        const heroRect = heroSection.getBoundingClientRect();
+        // Get the position of the Subscribe button
+        const btnRect = subscribeBtn.getBoundingClientRect();
         
-        // Show nav ONLY when hero section is completely scrolled off screen
-        // heroRect.bottom < 0 means the bottom of the hero is above the viewport
-        if (heroRect.bottom < 0) {
+        // Show nav ONLY when Subscribe button is completely scrolled off screen
+        // btnRect.bottom < 0 means the bottom of the button is above the viewport
+        if (btnRect.bottom < 0) {
             nav.style.transform = 'translateY(0)';
         } else {
             nav.style.transform = 'translateY(-100%)';
