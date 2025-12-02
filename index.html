@@ -51,10 +51,10 @@
                         <span class="text-united-red">We Stand</span>
                     </h1>
                     
-                    <!-- Since 1989 - centered, no side line on mobile -->
-                    <div class="flex items-center justify-center lg:justify-start space-x-4">
+                    <!-- Since 1989 - centered on mobile, with line on desktop -->
+                    <div class="lg:flex lg:items-center lg:justify-start lg:space-x-4">
                         <div class="hidden lg:block h-px w-12 bg-united-gold"></div>
-                        <p class="text-united-gold text-xs sm:text-sm font-bold tracking-wider uppercase">Since 1989</p>
+                        <p class="text-united-gold text-xs sm:text-sm font-bold tracking-wider uppercase text-center lg:text-left">Since 1989</p>
                     </div>
                     
                     <p class="text-lg sm:text-2xl text-gray-300 font-light leading-relaxed">
@@ -69,26 +69,17 @@
                              class="rounded-lg shadow-2xl w-full max-w-[200px]">
                     </div>
                     
-                    <!-- Primary CTA - Below cover on mobile -->
-                    <div class="pt-2 lg:pt-4">
+                    <!-- Primary CTA - Below cover on mobile, side-by-side on desktop -->
+                    <div class="pt-2 lg:pt-4 flex flex-col lg:flex-row gap-4 items-center lg:items-start">
                         <a href="./subscribe.html" class="inline-block bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-united-gold px-8 py-3 sm:px-10 sm:py-4 rounded-lg font-bold text-base sm:text-lg tracking-refined transition">
                             Subscribe Now
                         </a>
+                        <!-- Learn More button moved here for desktop side-by-side layout -->
+                        <a href="./about.html" class="hidden lg:inline-block border border-white/20 text-white hover:border-white/40 hover:bg-white/5 px-8 py-3 sm:px-10 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition">
+                            Learn More
+                        </a>
                     </div>
                     
-                    <!-- Award text and Learn More - desktop only -->
-                    <div class="hidden lg:block space-y-4">
-                        <p class="text-base text-gray-300 leading-relaxed">
-                            <span class="text-united-gold font-semibold">Award-winning</span> and 
-                            <span class="text-united-gold font-semibold">best-selling</span> fanzine of the 20 times champions of England.
-                        </p>
-                        
-                        <div>
-                            <a href="./about.html" class="inline-block border border-white/20 text-white hover:border-white/40 hover:bg-white/5 px-8 py-3 rounded-lg font-semibold text-base transition">
-                                Learn More
-                            </a>
-                        </div>
-                    </div>
                 </div>
                 
                 <!-- Magazine Cover - Desktop only, on left -->
