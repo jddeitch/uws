@@ -1,0 +1,46 @@
+name: Update Magazine Cover
+
+on:
+  schedule:
+    # Run daily at 6:00 AM UTC (7:00 AM BST / 6:00 AM GMT)
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  update-cover:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Fetch latest cover
+        run: node _internal/scripts/fetch-latest-cover.js
+      
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code data/current-issue.json images/mags/ || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit and push if changed
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/current-issue.json images/mags/
+          git commit -m "🤖 Auto-update: Latest magazine cover from Exact Editions"
+          git push
+      
+      - name: No changes
+        if: steps.git-check.outputs.changed != 'true'
+        run: echo "✅ Cover is already up to date"

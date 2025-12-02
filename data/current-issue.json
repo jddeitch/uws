@@ -1,9 +1,9 @@
 {
   "issueNumber": "Latest",
   "coverImage": "/images/mags/themag.jpg",
-  "publicationDate": "2024-12-01",
+  "coverImageExternal": "https://exacteditions.com/mediumcover/unitedwestand",
+  "publicationDate": "2025-12-02",
   "exactEditionsUrl": "https://shop.exacteditions.com/united-we-stand",
-  "lastUpdated": "2024-12-02T00:00:00Z",
-  "note": "This file can be automatically updated via GitHub Actions to update the cover image"
+  "lastUpdated": "2025-12-02T17:41:38.199Z",
+  "note": "Cover image automatically downloaded from Exact Editions"
 }
-
