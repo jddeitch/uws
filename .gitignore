@@ -5,13 +5,8 @@ package-lock.json
 # Legacy site (for reference only, not deployed)
 old-site/
 
-# Technical/Internal files (NOT for public repo)
-DEPLOYMENT.md
-QUICKSTART.md
-.cursorrules
-verify.sh
-scripts/
-.github/
+# Internal technical files (NOT for public repo)
+_internal/
 
 # OS files
 .DS_Store
