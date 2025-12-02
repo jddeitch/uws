@@ -25,7 +25,7 @@ jobs:
         run: npm install
       
       - name: Fetch latest cover
-        run: node _internal/scripts/fetch-latest-cover.js
+        run: node scripts/fetch-latest-cover.js
       
       - name: Check for changes
         id: git-check
