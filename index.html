@@ -51,8 +51,9 @@
                         <span class="text-united-red">We Stand</span>
                     </h1>
                     
-                    <div class="flex items-center justify-center lg:justify-start space-x-3 sm:space-x-4">
-                        <div class="h-px w-8 sm:w-12 bg-united-gold"></div>
+                    <!-- Since 1989 - centered, no side line on mobile -->
+                    <div class="flex items-center justify-center lg:justify-start space-x-4">
+                        <div class="hidden lg:block h-px w-12 bg-united-gold"></div>
                         <p class="text-united-gold text-xs sm:text-sm font-bold tracking-wider uppercase">Since 1989</p>
                     </div>
                     
@@ -60,33 +61,43 @@
                         The Manchester United Fanzine
                     </p>
                     
-                    <!-- Primary CTA - Above fold on mobile -->
-                    <div class="pt-2">
-                        <a href="./subscribe.html" class="inline-block bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-united-gold px-8 py-3 rounded-lg font-bold text-base sm:text-lg tracking-refined transition">
+                    <!-- Magazine Cover - on mobile only, above button -->
+                    <div class="flex justify-center lg:hidden pt-2">
+                        <img id="current-cover-mobile" 
+                             src="./images/mags/themag.jpg" 
+                             alt="United We Stand - Latest Issue" 
+                             class="rounded-lg shadow-2xl w-full max-w-[200px]">
+                    </div>
+                    
+                    <!-- Primary CTA - Below cover on mobile -->
+                    <div class="pt-2 lg:pt-4">
+                        <a href="./subscribe.html" class="inline-block bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-united-gold px-8 py-3 sm:px-10 sm:py-4 rounded-lg font-bold text-base sm:text-lg tracking-refined transition">
                             Subscribe Now
                         </a>
                     </div>
                     
-                    <!-- Secondary info and CTA - can be below fold on mobile -->
-                    <p class="text-sm sm:text-base text-gray-400 leading-relaxed pt-2">
-                        <span class="text-united-gold font-semibold">Award-winning</span> and 
-                        <span class="text-united-gold font-semibold">best-selling</span> fanzine
-                    </p>
-                    
-                    <div class="hidden sm:block pt-2">
-                        <a href="./about.html" class="inline-block border border-white/20 text-white hover:border-white/40 hover:bg-white/5 px-8 py-3 rounded-lg font-semibold text-base transition">
-                            Learn More
-                        </a>
+                    <!-- Award text and Learn More - desktop only -->
+                    <div class="hidden lg:block space-y-4">
+                        <p class="text-base text-gray-300 leading-relaxed">
+                            <span class="text-united-gold font-semibold">Award-winning</span> and 
+                            <span class="text-united-gold font-semibold">best-selling</span> fanzine of the 20 times champions of England.
+                        </p>
+                        
+                        <div>
+                            <a href="./about.html" class="inline-block border border-white/20 text-white hover:border-white/40 hover:bg-white/5 px-8 py-3 rounded-lg font-semibold text-base transition">
+                                Learn More
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Magazine Cover - Smaller on mobile, full size desktop -->
-                <div class="flex justify-center lg:justify-start lg:order-1">
+                <!-- Magazine Cover - Desktop only, on left -->
+                <div class="hidden lg:flex justify-center lg:justify-start lg:order-1">
                     <div class="relative">
                         <img id="current-cover" 
                              src="./images/mags/themag.jpg" 
                              alt="United We Stand - Latest Issue" 
-                             class="rounded-lg shadow-2xl w-full max-w-[200px] sm:max-w-sm lg:max-w-xs flex-shrink-0">
+                             class="rounded-lg shadow-2xl w-full max-w-xs flex-shrink-0">
                     </div>
                 </div>
             </div>
