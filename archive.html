@@ -12,7 +12,8 @@
             theme: {
                 extend: {
                     colors: {
-                        'united-red': '#C00',
+                        'united-red': '#DC2626',
+                        'united-red-dark': '#991B1B',
                         'united-gold': '#FFD700',
                     }
                 }
@@ -164,51 +165,7 @@
 <body class="bg-black text-white antialiased">
     
     <!-- Navigation -->
-    <nav class="bg-gray-900 shadow-lg fixed w-full z-50 top-0">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <a href="/" class="flex items-center">
-                        <img src="./images/uwslogo.png" alt="United We Stand" class="h-10 sm:h-12">
-                    </a>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-6">
-                    <a href="/about.html" class="text-gray-300 hover:text-white font-medium transition">About</a>
-                    <a href="/archive.html" class="text-gray-300 hover:text-white font-medium transition">Archive</a>
-                    <a href="/podcast.html" class="text-gray-300 hover:text-white font-medium transition">Podcast</a>
-                    <a href="https://forum.uwsonline.com" target="_blank" class="text-gray-300 hover:text-white font-medium transition">Forum</a>
-                    <a href="/subscribe.html" class="bg-united-red hover:bg-red-700 text-white px-6 py-2 rounded-lg font-bold transition">
-                        Subscribe
-                    </a>
-                </div>
-                
-                <!-- Mobile: Subscribe + Menu -->
-                <div class="md:hidden flex items-center space-x-3">
-                    <a href="/subscribe.html" class="bg-united-red hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold text-sm transition">
-                        Subscribe
-                    </a>
-                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
-            <div class="px-4 py-3 space-y-1">
-                <a href="/about.html" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md font-medium">About</a>
-                <a href="/archive.html" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md font-medium">Archive</a>
-                <a href="/podcast.html" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md font-medium">Podcast</a>
-                <a href="https://forum.uwsonline.com" target="_blank" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md font-medium">Forum</a>
-            </div>
-        </div>
-    </nav>
+    <div id="site-nav"></div>
     
     <!-- Hero Section -->
     <div class="pt-24 pb-12 bg-gradient-to-b from-gray-900 to-black">
@@ -281,45 +238,11 @@
     </section>
     
     <!-- Footer -->
-    <footer class="bg-black border-t border-gray-800 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <img src="./images/uwslogo.png" alt="United We Stand" class="h-12 mb-4">
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Independent Manchester United fanzine since 1989. 
-                        11 issues per season, 44 pages of honest, informed opinion.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="/about.html" class="text-gray-400 hover:text-united-red transition">About UWS</a></li>
-                        <li><a href="/subscribe.html" class="text-gray-400 hover:text-united-red transition">Subscribe</a></li>
-                        <li><a href="/archive.html" class="text-gray-400 hover:text-united-red transition">Magazine Archive</a></li>
-                        <li><a href="/podcast.html" class="text-gray-400 hover:text-united-red transition">Podcast</a></li>
-                        <li><a href="https://forum.uwsonline.com" target="_blank" class="text-gray-400 hover:text-united-red transition">Forum</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4">Contact</h4>
-                    <address class="text-gray-400 text-sm not-italic leading-relaxed">
-                        United We Stand<br>
-                        43 Chapel Road<br>
-                        Manchester<br>
-                        M22 4JN
-                    </address>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 1989-2024 United We Stand. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <div id="site-footer"></div>
     
+    <script src="/js/config.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/archive.js"></script>
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN_HERE"}'></script>
 </body>
 </html>
 

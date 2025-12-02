@@ -28,14 +28,18 @@ async function loadCurrentIssue() {
         
         // Update cover image on homepage
         const coverImg = document.getElementById('current-cover');
-        if (coverImg && data.coverImage) {
-            coverImg.src = data.coverImage;
-            coverImg.alt = `United We Stand Issue ${data.issueNumber}`;
+        if (coverImg) {
+            // Use external cover if available, otherwise fall back to local
+            const coverSrc = data.coverImageExternal || data.coverImage || '/images/mags/themag.jpg';
+            coverImg.src = coverSrc;
+            coverImg.alt = `United We Stand Issue ${data.issueNumber || 'Latest'}`;
+            
+            console.log('Cover loaded:', coverSrc);
         }
         
     } catch (error) {
         console.error('Error loading current issue:', error);
-        // Fallback to default content
+        // Fallback to default content - already set in HTML
     }
 }
 
