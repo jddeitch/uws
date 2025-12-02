@@ -42,46 +42,51 @@
     <!-- Hero Section -->
     <section class="pt-12 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-b from-gray-900 to-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-12 items-center lg:items-center max-w-6xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center max-w-6xl mx-auto">
                 
-                <!-- Left: Magazine Cover -->
-                <div class="flex justify-center lg:justify-start">
-                    <div class="relative">
-                        <img id="current-cover" 
-                             src="./images/mags/themag.jpg" 
-                             alt="United We Stand - Latest Issue" 
-                             class="rounded-lg shadow-2xl w-full max-w-[280px] sm:max-w-sm lg:max-w-xs flex-shrink-0">
-                    </div>
-                </div>
-                
-                <!-- Right: Content -->
-                <div class="text-center lg:text-left space-y-3 sm:space-y-6 flex-1">
-                    <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black leading-none uppercase">
+                <!-- Mobile: Content First (Brand + CTA above fold) -->
+                <div class="text-center lg:text-left space-y-4 flex-1 lg:order-2">
+                    <h1 class="text-4xl sm:text-7xl lg:text-8xl font-black leading-none uppercase">
                         <span class="text-white">United</span><br>
                         <span class="text-united-red">We Stand</span>
                     </h1>
                     
-                    <div class="flex items-center justify-center lg:justify-start space-x-4 mb-2 sm:mb-4">
+                    <div class="flex items-center justify-center lg:justify-start space-x-3 sm:space-x-4">
                         <div class="h-px w-8 sm:w-12 bg-united-gold"></div>
                         <p class="text-united-gold text-xs sm:text-sm font-bold tracking-wider uppercase">Since 1989</p>
                     </div>
                     
-                    <p class="text-xl sm:text-2xl text-gray-300 font-light leading-relaxed">
+                    <p class="text-lg sm:text-2xl text-gray-300 font-light leading-relaxed">
                         The Manchester United Fanzine
                     </p>
                     
-                    <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
-                        <span class="text-united-gold font-semibold">Award-winning</span> and 
-                        <span class="text-united-gold font-semibold">best-selling</span> fanzine of the 20 times champions of England.
-                    </p>
-                    
-                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2 sm:pt-4">
-                        <a href="/subscribe.html" class="bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-united-gold px-8 sm:px-10 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg tracking-refined transition">
+                    <!-- Primary CTA - Above fold on mobile -->
+                    <div class="pt-2">
+                        <a href="./subscribe.html" class="inline-block bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-united-gold px-8 py-3 rounded-lg font-bold text-base sm:text-lg tracking-refined transition">
                             Subscribe Now
                         </a>
-                        <a href="/about.html" class="border border-white/20 text-white hover:border-white/40 hover:bg-white/5 px-8 sm:px-10 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition">
+                    </div>
+                    
+                    <!-- Secondary info and CTA - can be below fold on mobile -->
+                    <p class="text-sm sm:text-base text-gray-400 leading-relaxed pt-2">
+                        <span class="text-united-gold font-semibold">Award-winning</span> and 
+                        <span class="text-united-gold font-semibold">best-selling</span> fanzine
+                    </p>
+                    
+                    <div class="hidden sm:block pt-2">
+                        <a href="./about.html" class="inline-block border border-white/20 text-white hover:border-white/40 hover:bg-white/5 px-8 py-3 rounded-lg font-semibold text-base transition">
                             Learn More
                         </a>
+                    </div>
+                </div>
+                
+                <!-- Magazine Cover - Smaller on mobile, full size desktop -->
+                <div class="flex justify-center lg:justify-start lg:order-1">
+                    <div class="relative">
+                        <img id="current-cover" 
+                             src="./images/mags/themag.jpg" 
+                             alt="United We Stand - Latest Issue" 
+                             class="rounded-lg shadow-2xl w-full max-w-[200px] sm:max-w-sm lg:max-w-xs flex-shrink-0">
                     </div>
                 </div>
             </div>
