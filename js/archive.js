@@ -77,7 +77,7 @@ function createSlide(cover) {
     slide.innerHTML = `
         <div class="cover-card">
             <img 
-                src="/images/mags/${cover.file}" 
+                src="./images/mags/${cover.file}" 
                 alt="${issueLabel}"
                 loading="lazy"
             />
@@ -89,7 +89,7 @@ function createSlide(cover) {
     
     // Click handler - redirect to subscribe page
     slide.querySelector('.cover-card').addEventListener('click', () => {
-        window.location.href = '/subscribe.html';
+        window.location.href = './subscribe.html';
     });
     
     return slide;
