@@ -4,11 +4,16 @@
  * Nav only appears when Subscribe button is COMPLETELY off screen
  */
 
-document.addEventListener('DOMContentLoaded', function() {
+// Wait for nav to be loaded by config.js before running
+setTimeout(function initHomeNav() {
     const nav = document.querySelector('nav');
     const heroSection = document.querySelector('section'); // First section is hero
     
-    if (!nav || !heroSection) return;
+    // If nav hasn't loaded yet, try again
+    if (!nav || !heroSection) {
+        setTimeout(initHomeNav, 100);
+        return;
+    }
     
     function isMobile() {
         return window.innerWidth < 768; // md breakpoint
@@ -42,5 +47,5 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update on resize (in case user rotates device or resizes window)
     window.addEventListener('resize', updateNavVisibility);
-});
+}, 100);
 
