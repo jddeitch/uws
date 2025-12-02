@@ -3,18 +3,8 @@
  * Handles navigation, dynamic content loading, and site-wide functionality
  */
 
-// Mobile menu toggle
+// Load current issue data on page load
 document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
-    
-    // Load current issue data
     loadCurrentIssue();
 });
 

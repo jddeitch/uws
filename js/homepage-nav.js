@@ -21,13 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        const currentScroll = window.pageYOffset;
+        // Get the bottom of the entire hero section
         const heroRect = heroSection.getBoundingClientRect();
-        const heroBottom = heroRect.bottom + currentScroll;
         
-        // Show nav ONLY when entire hero section (including Subscribe button) is scrolled past
-        // Adding small buffer to ensure button is completely gone
-        if (currentScroll > heroBottom + 20) {
+        // Show nav ONLY when hero section is completely scrolled off screen
+        // heroRect.bottom < 0 means the bottom of the hero is above the viewport
+        if (heroRect.bottom < 0) {
             nav.style.transform = 'translateY(0)';
         } else {
             nav.style.transform = 'translateY(-100%)';

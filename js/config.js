@@ -86,6 +86,9 @@ async function loadComponents() {
             const navResponse = await fetch('./components/nav.html');
             const navHTML = await navResponse.text();
             navElement.innerHTML = navHTML;
+            
+            // After nav is loaded, initialize mobile menu
+            initializeMobileMenu();
         } catch (error) {
             console.error('Error loading navigation:', error);
         }
@@ -110,6 +113,20 @@ async function loadComponents() {
     // Initialize analytics if enabled
     if (UWSConfig.analytics.enabled && UWSConfig.analytics.cloudflareToken) {
         initializeAnalytics();
+    }
+}
+
+/**
+ * Initialize mobile menu toggle (called after nav is loaded)
+ */
+function initializeMobileMenu() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
     }
 }
 
