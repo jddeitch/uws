@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 async function loadCurrentIssue() {
     try {
-        const response = await fetch('/data/current-issue.json');
+        const response = await fetch('./data/current-issue.json');
         const data = await response.json();
         
         // Update cover image on homepage

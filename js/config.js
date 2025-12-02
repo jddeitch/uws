@@ -83,7 +83,7 @@ async function loadComponents() {
     const navElement = document.getElementById('site-nav');
     if (navElement) {
         try {
-            const navResponse = await fetch('/components/nav.html');
+            const navResponse = await fetch('./components/nav.html');
             const navHTML = await navResponse.text();
             navElement.innerHTML = navHTML;
         } catch (error) {
@@ -95,7 +95,7 @@ async function loadComponents() {
     const footerElement = document.getElementById('site-footer');
     if (footerElement) {
         try {
-            const footerResponse = await fetch('/components/footer.html');
+            const footerResponse = await fetch('./components/footer.html');
             const footerHTML = await footerResponse.text();
             footerElement.innerHTML = footerHTML;
             
