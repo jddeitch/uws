@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Subscribe to United We Stand - Get 10 issues of Britain's best Manchester United fanzine delivered to your door.">
+    <title>Subscribe - United We Stand</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'united-red': '#C00',
+                        'united-gold': '#FFD700',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        .subscription-card {
+            transition: all 0.3s ease;
+        }
+        .subscription-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(204, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-black text-white antialiased">
+    
+    <!-- Navigation (same as index) -->
+    <!-- Navigation -->
+    <nav class="bg-gray-900 shadow-lg fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center">
+                        <img src="/images/uwslogo.png" alt="United We Stand" class="h-10 sm:h-12">
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/about.html" class="text-gray-300 hover:text-white font-medium transition">About</a>
+                    <a href="/archive.html" class="text-gray-300 hover:text-white font-medium transition">Archive</a>
+                    <a href="/podcast.html" class="text-gray-300 hover:text-white font-medium transition">Podcast</a>
+                    <a href="https://forum.uwsonline.com" target="_blank" class="text-gray-300 hover:text-white font-medium transition">Forum</a>
+                    <a href="/subscribe.html" class="bg-united-red hover:bg-red-700 text-white px-6 py-2 rounded-lg font-bold transition">
+                        Subscribe
+                    </a>
+                </div>
+                
+                <!-- Mobile: Subscribe + Menu -->
+                <div class="md:hidden flex items-center space-x-3">
+                    <a href="/subscribe.html" class="bg-united-red hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold text-sm transition">
+                        Subscribe
+                    </a>
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
+            <div class="px-4 py-3 space-y-1">
+                <a href="/about.html" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md font-medium">About</a>
+                <a href="/archive.html" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md font-medium">Archive</a>
+                <a href="/podcast.html" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md font-medium">Podcast</a>
+                <a href="https://forum.uwsonline.com" target="_blank" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md font-medium">Forum</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <div class="pt-24 pb-12 bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl font-black text-white mb-4">
+                Subscribe to <span class="text-united-red">United We Stand</span>
+            </h1>
+            <p class="text-xl text-gray-300 leading-relaxed">
+                Get 10 issues of Britain's best Manchester United fanzine delivered to your door or device. 
+                44 pages of independent, honest opinion every time.
+            </p>
+        </div>
+    </div>
+    
+    <!-- Subscription Options -->
+    <section class="py-12 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Digital Subscription (Featured) -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="subscription-card bg-gradient-to-br from-united-red to-red-800 rounded-2xl p-8 border-4 border-united-gold shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-united-gold text-black px-4 py-1 rounded-full text-sm font-bold">
+                        MOST POPULAR
+                    </div>
+                    <div class="relative z-10">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="bg-white p-3 rounded-lg">
+                                <svg class="w-10 h-10 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-black text-white">Digital Edition</h3>
+                                <p class="text-white/90">Web, iOS & Android</p>
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start space-x-3">
+                                <svg class="w-6 h-6 text-united-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="text-white text-lg">Read on any device - phone, tablet, computer</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <svg class="w-6 h-6 text-united-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="text-white text-lg">Instant access as soon as each issue is published</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <svg class="w-6 h-6 text-united-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="text-white text-lg">Access to full archive of back issues</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <form action="https://shop.exacteditions.com/united-we-stand" method="get" class="w-full">
+                                <button type="submit" class="w-full bg-white hover:bg-united-gold text-united-red px-6 py-4 rounded-lg font-bold text-lg shadow-lg transition transform hover:scale-105">
+                                    Quarterly<br><span class="text-2xl">£7.99</span>
+                                </button>
+                            </form>
+                            <form action="https://shop.exacteditions.com/united-we-stand" method="get" class="w-full">
+                                <button type="submit" class="w-full bg-united-gold hover:bg-white text-black px-6 py-4 rounded-lg font-bold text-lg shadow-lg transition transform hover:scale-105">
+                                    Annual<br><span class="text-2xl">£29.99</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Print Subscriptions -->
+            <div class="mb-8 text-center">
+                <h2 class="text-3xl font-black text-white mb-2">Print Edition</h2>
+                <p class="text-gray-400">Classic fanzine delivered to your door</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                
+                <!-- UK Print -->
+                <div class="subscription-card bg-white/5 border border-white/10 rounded-xl p-8 hover:bg-white/10">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-united-red rounded-full mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                                <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">UK Delivery</h3>
+                        <p class="text-4xl font-black text-united-red mb-1">£44.99</p>
+                        <p class="text-gray-400">10 issues</p>
+                    </div>
+                    
+                    <ul class="space-y-2 mb-6 text-gray-300">
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Free UK shipping</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>44 pages per issue</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Collectible print</span>
+                        </li>
+                    </ul>
+                    
+                    <form method="post" action="https://www.paypal.com/cgi-bin/webscr">
+                        <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="add" value="1">
+                        <input type="hidden" name="business" value="uwsmag@yahoo.co.uk">
+                        <input type="hidden" name="item_name" value="United We Stand 10 issue subscription - UK">
+                        <input type="hidden" name="amount" value="44.99">
+                        <input type="hidden" name="shipping" value="0">
+                        <input type="hidden" name="shipping2" value="0">
+                        <input type="hidden" name="handling" value="0">
+                        <input type="hidden" name="currency_code" value="GBP">
+                        <input type="hidden" name="return" value="http://www.uwsonline.com/thankyou.php">
+                        <input type="hidden" name="undefined_quantity" value="1">
+                        <button type="submit" class="w-full bg-united-red hover:bg-white text-white hover:text-united-red px-6 py-3 rounded-lg font-bold transition transform hover:scale-105">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Europe Print -->
+                <div class="subscription-card bg-white/5 border border-white/10 rounded-xl p-8 hover:bg-white/10">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-united-red rounded-full mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Europe</h3>
+                        <p class="text-4xl font-black text-united-red mb-1">£59.99</p>
+                        <p class="text-gray-400">10 issues</p>
+                    </div>
+                    
+                    <ul class="space-y-2 mb-6 text-gray-300">
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>European shipping</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>44 pages per issue</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Collectible print</span>
+                        </li>
+                    </ul>
+                    
+                    <form method="post" action="https://www.paypal.com/cgi-bin/webscr">
+                        <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="add" value="1">
+                        <input type="hidden" name="business" value="uwsmag@yahoo.co.uk">
+                        <input type="hidden" name="item_name" value="United We Stand 10 issue subscription - Europe">
+                        <input type="hidden" name="amount" value="59.99">
+                        <input type="hidden" name="shipping" value="0">
+                        <input type="hidden" name="shipping2" value="0">
+                        <input type="hidden" name="handling" value="0">
+                        <input type="hidden" name="currency_code" value="GBP">
+                        <input type="hidden" name="return" value="http://www.uwsonline.com/thankyou.php">
+                        <input type="hidden" name="undefined_quantity" value="1">
+                        <button type="submit" class="w-full bg-united-red hover:bg-white text-white hover:text-united-red px-6 py-3 rounded-lg font-bold transition transform hover:scale-105">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Rest of World Print -->
+                <div class="subscription-card bg-white/5 border border-white/10 rounded-xl p-8 hover:bg-white/10">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-united-red rounded-full mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Worldwide</h3>
+                        <p class="text-4xl font-black text-united-red mb-1">£69.99</p>
+                        <p class="text-gray-400">10 issues</p>
+                    </div>
+                    
+                    <ul class="space-y-2 mb-6 text-gray-300">
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>International shipping</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>44 pages per issue</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Collectible print</span>
+                        </li>
+                    </ul>
+                    
+                    <form method="post" action="https://www.paypal.com/cgi-bin/webscr">
+                        <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="add" value="1">
+                        <input type="hidden" name="business" value="uwsmag@yahoo.co.uk">
+                        <input type="hidden" name="item_name" value="United We Stand 10 issue subscription - Rest of World">
+                        <input type="hidden" name="amount" value="69.99">
+                        <input type="hidden" name="shipping" value="0">
+                        <input type="hidden" name="shipping2" value="0">
+                        <input type="hidden" name="handling" value="0">
+                        <input type="hidden" name="currency_code" value="GBP">
+                        <input type="hidden" name="return" value="http://www.uwsonline.com/thankyou.php">
+                        <input type="hidden" name="undefined_quantity" value="1">
+                        <button type="submit" class="w-full bg-united-red hover:bg-white text-white hover:text-united-red px-6 py-3 rounded-lg font-bold transition transform hover:scale-105">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Alternative Payment Info -->
+            <div class="max-w-2xl mx-auto bg-white/5 border border-white/10 rounded-xl p-8">
+                <h3 class="text-xl font-bold text-white mb-4">Pay by Cheque or Postal Order</h3>
+                <p class="text-gray-300 mb-4">
+                    Alternatively, send a cheque or postal order made payable to <span class="text-united-red font-bold">UWS Subs</span>:
+                </p>
+                <address class="text-gray-300 not-italic bg-black/30 p-4 rounded-lg mb-4">
+                    United We Stand<br>
+                    43 Chapel Road<br>
+                    Manchester<br>
+                    M22 4JN
+                </address>
+                <p class="text-gray-400 text-sm">
+                    Please include the name and address where you want the subscription to be sent. 
+                    We can only accept cheques and postal orders in sterling (GBP).
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <img src="/images/uwslogo.png" alt="United We Stand" class="h-12 mb-4">
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Independent Manchester United fanzine since 1989. 
+                        11 issues per season, 44 pages of honest, informed opinion.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/about.html" class="text-gray-400 hover:text-united-red transition">About UWS</a></li>
+                        <li><a href="/subscribe.html" class="text-gray-400 hover:text-united-red transition">Subscribe</a></li>
+                        <li><a href="/archive.html" class="text-gray-400 hover:text-united-red transition">Magazine Archive</a></li>
+                        <li><a href="/podcast.html" class="text-gray-400 hover:text-united-red transition">Podcast</a></li>
+                        <li><a href="https://forum.uwsonline.com" target="_blank" class="text-gray-400 hover:text-united-red transition">Forum</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <address class="text-gray-400 text-sm not-italic leading-relaxed">
+                        United We Stand<br>
+                        43 Chapel Road<br>
+                        Manchester<br>
+                        M22 4JN
+                    </address>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 1989-2024 United We Stand. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/js/main.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN_HERE"}'></script>
+</body>
+</html>
+

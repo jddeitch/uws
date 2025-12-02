@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="United We Stand Magazine Archive - Browse over 200 issues of Britain's best Manchester United fanzine since 1989.">
+    <title>Archive - United We Stand</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'united-red': '#C00',
+                        'united-gold': '#FFD700',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        /* Gallery Container */
+        .carousel-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 30px 20px;
+        }
+        
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .carousel-track {
+            white-space: nowrap;
+        }
+        
+        .carousel-slide {
+            display: inline-block;
+            width: 250px;
+            margin-right: 20px;
+            vertical-align: top;
+            white-space: normal;
+        }
+        
+        @media (max-width: 640px) {
+            .carousel-slide {
+                width: 200px;
+                margin-right: 16px;
+            }
+            .carousel-container {
+                padding: 20px 16px;
+            }
+        }
+        
+        .cover-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .cover-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .cover-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            border-radius: 8px;
+        }
+        
+        .cover-card:hover img {
+            box-shadow: 0 8px 30px rgba(204, 0, 0, 0.8);
+        }
+        
+        .cover-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cover-card:hover .cover-overlay {
+            opacity: 1;
+        }
+        
+        .issue-label {
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        /* Navigation Arrows - Hidden on mobile, visible on desktop */
+        .carousel-nav {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .carousel-nav {
+                display: flex;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(0,0,0,0.8);
+                color: white;
+                border: none;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                cursor: pointer;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                z-index: 10;
+            }
+            
+            .carousel-nav:hover {
+                background: #C00;
+                transform: translateY(-50%) scale(1.1);
+            }
+            
+            .carousel-nav.prev {
+                left: 16px;
+            }
+            
+            .carousel-nav.next {
+                right: 16px;
+            }
+        }
+        
+        /* Progress Indicator */
+        .scroll-indicator {
+            text-align: center;
+            margin-top: 16px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (min-width: 768px) {
+            .scroll-indicator {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-white antialiased">
+    
+    <!-- Navigation -->
+    <nav class="bg-gray-900 shadow-lg fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center">
+                        <img src="/images/uwslogo.png" alt="United We Stand" class="h-10 sm:h-12">
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="/about.html" class="text-gray-300 hover:text-white font-medium transition">About</a>
+                    <a href="/archive.html" class="text-gray-300 hover:text-white font-medium transition">Archive</a>
+                    <a href="/podcast.html" class="text-gray-300 hover:text-white font-medium transition">Podcast</a>
+                    <a href="https://forum.uwsonline.com" target="_blank" class="text-gray-300 hover:text-white font-medium transition">Forum</a>
+                    <a href="/subscribe.html" class="bg-united-red hover:bg-red-700 text-white px-6 py-2 rounded-lg font-bold transition">
+                        Subscribe
+                    </a>
+                </div>
+                
+                <!-- Mobile: Subscribe + Menu -->
+                <div class="md:hidden flex items-center space-x-3">
+                    <a href="/subscribe.html" class="bg-united-red hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold text-sm transition">
+                        Subscribe
+                    </a>
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
+            <div class="px-4 py-3 space-y-1">
+                <a href="/about.html" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md font-medium">About</a>
+                <a href="/archive.html" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md font-medium">Archive</a>
+                <a href="/podcast.html" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md font-medium">Podcast</a>
+                <a href="https://forum.uwsonline.com" target="_blank" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md font-medium">Forum</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <div class="pt-24 pb-12 bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl font-black text-white mb-4">
+                Magazine <span class="text-united-red">Archive</span>
+            </h1>
+            <p class="text-xl text-gray-300 leading-relaxed mb-6">
+                35+ years of independent Manchester United coverage
+            </p>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                Swipe through our heritage covers. Digital editions from April 2012 onwards available via subscription.
+            </p>
+        </div>
+    </div>
+    
+    <!-- Carousel Section -->
+    <section class="py-16 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="px-4 sm:px-6 lg:px-8 mb-8">
+                <h2 class="text-2xl font-black text-white mb-2">Heritage Covers</h2>
+                <p class="text-gray-400">Swipe to explore · Tap any cover to subscribe</p>
+            </div>
+            
+            <!-- Carousel -->
+            <div class="carousel-container relative py-8">
+                <button class="carousel-nav prev" aria-label="Previous">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                
+                <div id="carousel-track" class="carousel-track">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                
+                <button class="carousel-nav next" aria-label="Next">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                ← Swipe to explore →
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <section class="py-16 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-united-red/20 to-black border border-white/10 rounded-2xl p-8 sm:p-12 text-center">
+                <h3 class="text-3xl font-black text-white mb-4">Get Every Issue Delivered</h3>
+                <p class="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
+                    Subscribe to United We Stand and never miss an issue. 11 issues per season, 
+                    44 pages of independent, informed Manchester United coverage.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/subscribe.html" class="bg-united-red hover:bg-white text-white hover:text-united-red px-8 py-4 rounded-lg font-bold text-lg transition transform hover:scale-105">
+                        Subscribe Now
+                    </a>
+                    <a href="https://shop.exacteditions.com/united-we-stand" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/20 px-8 py-4 rounded-lg font-bold text-lg transition">
+                        Digital Edition (2012+)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <img src="/images/uwslogo.png" alt="United We Stand" class="h-12 mb-4">
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Independent Manchester United fanzine since 1989. 
+                        11 issues per season, 44 pages of honest, informed opinion.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/about.html" class="text-gray-400 hover:text-united-red transition">About UWS</a></li>
+                        <li><a href="/subscribe.html" class="text-gray-400 hover:text-united-red transition">Subscribe</a></li>
+                        <li><a href="/archive.html" class="text-gray-400 hover:text-united-red transition">Magazine Archive</a></li>
+                        <li><a href="/podcast.html" class="text-gray-400 hover:text-united-red transition">Podcast</a></li>
+                        <li><a href="https://forum.uwsonline.com" target="_blank" class="text-gray-400 hover:text-united-red transition">Forum</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <address class="text-gray-400 text-sm not-italic leading-relaxed">
+                        United We Stand<br>
+                        43 Chapel Road<br>
+                        Manchester<br>
+                        M22 4JN
+                    </address>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 1989-2024 United We Stand. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/js/main.js"></script>
+    <script src="/js/archive.js"></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN_HERE"}'></script>
+</body>
+</html>
+

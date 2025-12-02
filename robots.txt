@@ -1,0 +1,16 @@
+# Robots.txt for United We Stand
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap (GitHub Pages will auto-generate)
+Sitemap: https://www.uwsonline.com/sitemap.xml
+
+# Disallow crawling of old PHP includes (if any remain)
+Disallow: /old-site/includes/
+Disallow: /old-site/cgi-bin/
+
+# Disallow scripts directory
+Disallow: /scripts/
+

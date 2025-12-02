@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UWS Design System</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'united-red': '#C00',
+                        'united-gold': '#FFD700',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <div class="max-w-7xl mx-auto p-8">
+        <h1 class="text-5xl font-black mb-2">United We Stand</h1>
+        <p class="text-2xl text-gray-600 mb-12">Design System</p>
+        
+        <!-- Colors -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 border-b-4 border-united-red pb-2">Brand Colors</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div>
+                    <div class="h-32 bg-united-red rounded-lg shadow-lg mb-3 flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">United Red</span>
+                    </div>
+                    <p class="font-mono text-sm">#C00 / rgb(204, 0, 0)</p>
+                    <p class="text-gray-600">Primary brand color</p>
+                </div>
+                
+                <div>
+                    <div class="h-32 bg-united-gold rounded-lg shadow-lg mb-3 flex items-center justify-center">
+                        <span class="text-black font-bold text-xl">United Gold</span>
+                    </div>
+                    <p class="font-mono text-sm">#FFD700 / rgb(255, 215, 0)</p>
+                    <p class="text-gray-600">Accent color, awards, highlights</p>
+                </div>
+                
+                <div>
+                    <div class="h-32 bg-black rounded-lg shadow-lg mb-3 flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">Black</span>
+                    </div>
+                    <p class="font-mono text-sm">#000 / rgb(0, 0, 0)</p>
+                    <p class="text-gray-600">Background, professional feel</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Grayscale -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">Grayscale Palette</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div>
+                    <div class="h-24 bg-white border-2 border-gray-300 rounded-lg mb-2"></div>
+                    <p class="font-mono text-sm">White</p>
+                    <p class="text-xs text-gray-600">#FFFFFF</p>
+                </div>
+                
+                <div>
+                    <div class="h-24 bg-gray-100 rounded-lg mb-2"></div>
+                    <p class="font-mono text-sm">Gray-100</p>
+                    <p class="text-xs text-gray-600">#F3F4F6</p>
+                </div>
+                
+                <div>
+                    <div class="h-24 bg-gray-300 rounded-lg mb-2"></div>
+                    <p class="font-mono text-sm">Gray-300</p>
+                    <p class="text-xs text-gray-600">#D1D5DB</p>
+                </div>
+                
+                <div>
+                    <div class="h-24 bg-gray-400 rounded-lg mb-2"></div>
+                    <p class="font-mono text-sm">Gray-400</p>
+                    <p class="text-xs text-gray-600">#9CA3AF</p>
+                </div>
+                
+                <div>
+                    <div class="h-24 bg-gray-500 rounded-lg mb-2"></div>
+                    <p class="font-mono text-sm">Gray-500</p>
+                    <p class="text-xs text-gray-600">#6B7280</p>
+                </div>
+                
+                <div>
+                    <div class="h-24 bg-gray-600 rounded-lg mb-2"></div>
+                    <p class="font-mono text-sm">Gray-600</p>
+                    <p class="text-xs text-gray-600">#4B5563</p>
+                </div>
+                
+                <div>
+                    <div class="h-24 bg-gray-800 rounded-lg mb-2"></div>
+                    <p class="font-mono text-sm">Gray-800</p>
+                    <p class="text-xs text-gray-600">#1F2937</p>
+                </div>
+                
+                <div>
+                    <div class="h-24 bg-gray-900 rounded-lg mb-2"></div>
+                    <p class="font-mono text-sm">Gray-900</p>
+                    <p class="text-xs text-gray-600">#111827</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Typography -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 border-b-4 border-united-red pb-2">Typography</h2>
+            
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-6">
+                <h3 class="text-xl font-bold mb-4 text-gray-700">Font Family: Inter</h3>
+                <p class="text-gray-600 mb-6">Modern, readable sans-serif. Fallbacks: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif</p>
+                
+                <div class="space-y-6">
+                    <div>
+                        <p class="text-xs text-gray-500 mb-1">font-weight: 400 (Regular)</p>
+                        <p class="text-2xl font-normal">The quick brown fox jumps over the lazy dog</p>
+                    </div>
+                    
+                    <div>
+                        <p class="text-xs text-gray-500 mb-1">font-weight: 600 (Semi-bold)</p>
+                        <p class="text-2xl font-semibold">The quick brown fox jumps over the lazy dog</p>
+                    </div>
+                    
+                    <div>
+                        <p class="text-xs text-gray-500 mb-1">font-weight: 700 (Bold)</p>
+                        <p class="text-2xl font-bold">The quick brown fox jumps over the lazy dog</p>
+                    </div>
+                    
+                    <div>
+                        <p class="text-xs text-gray-500 mb-1">font-weight: 900 (Black)</p>
+                        <p class="text-2xl font-black">The quick brown fox jumps over the lazy dog</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold mb-4 text-gray-700">Type Scale</h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <span class="text-xs text-gray-500">text-6xl (60px)</span>
+                        <h1 class="text-6xl font-black">Heading 1</h1>
+                    </div>
+                    
+                    <div>
+                        <span class="text-xs text-gray-500">text-5xl (48px)</span>
+                        <h2 class="text-5xl font-black">Heading 2</h2>
+                    </div>
+                    
+                    <div>
+                        <span class="text-xs text-gray-500">text-4xl (36px)</span>
+                        <h3 class="text-4xl font-bold">Heading 3</h3>
+                    </div>
+                    
+                    <div>
+                        <span class="text-xs text-gray-500">text-3xl (30px)</span>
+                        <h4 class="text-3xl font-bold">Heading 4</h4>
+                    </div>
+                    
+                    <div>
+                        <span class="text-xs text-gray-500">text-2xl (24px)</span>
+                        <h5 class="text-2xl font-semibold">Heading 5</h5>
+                    </div>
+                    
+                    <div>
+                        <span class="text-xs text-gray-500">text-xl (20px)</span>
+                        <h6 class="text-xl font-semibold">Heading 6</h6>
+                    </div>
+                    
+                    <div>
+                        <span class="text-xs text-gray-500">text-lg (18px)</span>
+                        <p class="text-lg">Large body text - used for important paragraphs</p>
+                    </div>
+                    
+                    <div>
+                        <span class="text-xs text-gray-500">text-base (16px)</span>
+                        <p class="text-base">Base body text - standard paragraph size</p>
+                    </div>
+                    
+                    <div>
+                        <span class="text-xs text-gray-500">text-sm (14px)</span>
+                        <p class="text-sm">Small text - captions, labels</p>
+                    </div>
+                    
+                    <div>
+                        <span class="text-xs text-gray-500">text-xs (12px)</span>
+                        <p class="text-xs">Extra small - fine print, metadata</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Buttons & Components -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 border-b-4 border-united-red pb-2">Buttons & CTAs</h2>
+            
+            <div class="bg-white p-8 rounded-lg shadow-lg space-y-6">
+                <div>
+                    <p class="text-sm text-gray-600 mb-2">Primary Button</p>
+                    <button class="bg-united-red hover:bg-white text-white hover:text-united-red px-8 py-4 rounded-lg font-bold text-lg shadow-lg transition transform hover:scale-105">
+                        Subscribe Now
+                    </button>
+                </div>
+                
+                <div>
+                    <p class="text-sm text-gray-600 mb-2">Secondary Button</p>
+                    <button class="bg-white/10 hover:bg-white/20 border border-white/20 px-8 py-4 rounded-lg font-bold text-lg transition">
+                        View Archive
+                    </button>
+                </div>
+                
+                <div>
+                    <p class="text-sm text-gray-600 mb-2">Gold Accent Button</p>
+                    <button class="bg-united-gold hover:bg-white text-black px-8 py-4 rounded-lg font-bold text-lg shadow-lg transition transform hover:scale-105">
+                        Featured Action
+                    </button>
+                </div>
+                
+                <div>
+                    <p class="text-sm text-gray-600 mb-2">Outline Button</p>
+                    <button class="border-2 border-united-red text-united-red hover:bg-united-red hover:text-white px-8 py-4 rounded-lg font-bold text-lg transition">
+                        Learn More
+                    </button>
+                </div>
+                
+                <div>
+                    <p class="text-sm text-gray-600 mb-2">Link Style</p>
+                    <a href="#" class="text-united-red hover:text-united-gold font-bold text-lg underline">
+                        Text Link →
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Spacing -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 border-b-4 border-united-red pb-2">Spacing Scale</h2>
+            
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <div class="w-32 text-sm text-gray-600">1 (4px)</div>
+                        <div class="h-4 bg-united-red" style="width: 4px;"></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-32 text-sm text-gray-600">2 (8px)</div>
+                        <div class="h-4 bg-united-red" style="width: 8px;"></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-32 text-sm text-gray-600">4 (16px)</div>
+                        <div class="h-4 bg-united-red" style="width: 16px;"></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-32 text-sm text-gray-600">6 (24px)</div>
+                        <div class="h-4 bg-united-red" style="width: 24px;"></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-32 text-sm text-gray-600">8 (32px)</div>
+                        <div class="h-4 bg-united-red" style="width: 32px;"></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-32 text-sm text-gray-600">12 (48px)</div>
+                        <div class="h-4 bg-united-red" style="width: 48px;"></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-32 text-sm text-gray-600">16 (64px)</div>
+                        <div class="h-4 bg-united-red" style="width: 64px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Example Components on Dark BG -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 border-b-4 border-united-red pb-2">Components on Dark Background</h2>
+            
+            <div class="bg-black p-12 rounded-lg">
+                <h3 class="text-4xl font-black text-white mb-4">
+                    <span class="text-white">United</span>
+                    <span class="text-united-red"> We Stand</span>
+                </h3>
+                
+                <p class="text-gray-300 text-lg mb-6 max-w-2xl">
+                    Independent, incisive, irreverent. Britain's best-selling Manchester United fanzine since 1989.
+                </p>
+                
+                <div class="flex gap-4">
+                    <button class="bg-united-red hover:bg-white text-white hover:text-united-red px-6 py-3 rounded-lg font-bold transition">
+                        Subscribe
+                    </button>
+                    <button class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3 rounded-lg font-bold transition">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Effects -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 border-b-4 border-united-red pb-2">Effects & Shadows</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <p class="font-bold mb-2">shadow-sm</p>
+                    <p class="text-sm text-gray-600">Subtle elevation</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <p class="font-bold mb-2">shadow-lg</p>
+                    <p class="text-sm text-gray-600">Standard cards</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-2xl">
+                    <p class="font-bold mb-2">shadow-2xl</p>
+                    <p class="text-sm text-gray-600">Hero elements</p>
+                </div>
+            </div>
+            
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg">
+                    <p class="font-bold mb-2">Rounded Corners</p>
+                    <div class="flex gap-2">
+                        <div class="w-16 h-16 bg-united-red rounded"></div>
+                        <div class="w-16 h-16 bg-united-red rounded-lg"></div>
+                        <div class="w-16 h-16 bg-united-red rounded-xl"></div>
+                        <div class="w-16 h-16 bg-united-red rounded-2xl"></div>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-2">rounded / rounded-lg / rounded-xl / rounded-2xl</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg">
+                    <p class="font-bold mb-2">Opacity Variations</p>
+                    <div class="space-y-2">
+                        <div class="h-8 bg-united-red opacity-100 rounded"></div>
+                        <div class="h-8 bg-united-red opacity-75 rounded"></div>
+                        <div class="h-8 bg-united-red opacity-50 rounded"></div>
+                        <div class="h-8 bg-united-red opacity-25 rounded"></div>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-2">100% / 75% / 50% / 25%</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Grid System -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 border-b-4 border-united-red pb-2">Grid System</h2>
+            
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <p class="text-gray-600 mb-6">Max width: 1280px (max-w-7xl) | Padding: 16px mobile, 24px tablet, 32px desktop</p>
+                
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="bg-united-red/20 p-4 text-center font-bold">
+                            1 Column (Mobile default)
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-united-red/20 p-4 text-center font-bold">2 Cols</div>
+                        <div class="bg-united-red/20 p-4 text-center font-bold">2 Cols</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-united-red/20 p-4 text-center font-bold">3 Cols</div>
+                        <div class="bg-united-red/20 p-4 text-center font-bold">3 Cols</div>
+                        <div class="bg-united-red/20 p-4 text-center font-bold">3 Cols</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-4 gap-4">
+                        <div class="bg-united-red/20 p-4 text-center font-bold text-sm">4 Cols</div>
+                        <div class="bg-united-red/20 p-4 text-center font-bold text-sm">4 Cols</div>
+                        <div class="bg-united-red/20 p-4 text-center font-bold text-sm">4 Cols</div>
+                        <div class="bg-united-red/20 p-4 text-center font-bold text-sm">4 Cols</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Usage Notes -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 border-b-4 border-united-red pb-2">Usage Guidelines</h2>
+            
+            <div class="bg-white p-8 rounded-lg shadow-lg space-y-6">
+                <div>
+                    <h3 class="text-xl font-bold mb-2 text-united-red">Do's ✅</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Use United Red for primary CTAs and key elements</li>
+                        <li>Use Gold sparingly for awards, highlights, special features</li>
+                        <li>Maintain high contrast (white on black, white on red)</li>
+                        <li>Use font-bold (700) or font-black (900) for headings</li>
+                        <li>Give buttons generous padding and hover states</li>
+                        <li>Use consistent spacing (multiples of 4px)</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-700">Don'ts ❌</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Don't use red on black for body text (low contrast)</li>
+                        <li>Don't overuse gold (loses impact)</li>
+                        <li>Don't use font weights below 400 (too thin)</li>
+                        <li>Don't use gray text on colored backgrounds</li>
+                        <li>Don't make clickable elements smaller than 44×44px (mobile)</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-700">Accessibility</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>All text meets WCAG AA contrast requirements</li>
+                        <li>Buttons have minimum 44px touch targets</li>
+                        <li>Focus states visible for keyboard navigation</li>
+                        <li>Color is never the only indicator of meaning</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="text-center text-gray-500 text-sm py-8 border-t">
+            <p>United We Stand Design System | Version 1.0 | December 2024</p>
+        </footer>
+    </div>
+    
+</body>
+</html>
+

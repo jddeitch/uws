@@ -1,0 +1,3 @@
+# Prevent old-site directory from being included in GitHub Pages deployment
+old-site/ export-ignore
+

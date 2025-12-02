@@ -1,0 +1,23 @@
+{
+  "name": "united-we-stand-website",
+  "version": "2.0.0",
+  "description": "Modern website for United We Stand, the Manchester United fanzine",
+  "scripts": {
+    "dev": "python3 -m http.server 5500",
+    "update-cover": "node scripts/fetch-latest-cover.js"
+  },
+  "keywords": [
+    "manchester-united",
+    "fanzine",
+    "football",
+    "mufc"
+  ],
+  "author": "United We Stand",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
+
