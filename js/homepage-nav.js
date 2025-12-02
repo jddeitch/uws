@@ -1,12 +1,12 @@
 /**
  * Homepage-specific navigation behavior
  * Auto-hide/show nav based on scroll position (MOBILE ONLY)
+ * Nav only appears when Subscribe button is COMPLETELY off screen
  */
 
 document.addEventListener('DOMContentLoaded', function() {
     const nav = document.querySelector('nav');
     const heroSection = document.querySelector('section'); // First section is hero
-    let lastScroll = 0;
     
     if (!nav || !heroSection) return;
     
@@ -22,10 +22,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         const currentScroll = window.pageYOffset;
-        const heroHeight = heroSection.offsetHeight;
+        const heroRect = heroSection.getBoundingClientRect();
+        const heroBottom = heroRect.bottom + currentScroll;
         
-        // Show nav when scrolled past hero section (where Subscribe button is)
-        if (currentScroll > heroHeight * 0.7) {
+        // Show nav ONLY when entire hero section (including Subscribe button) is scrolled past
+        // Adding small buffer to ensure button is completely gone
+        if (currentScroll > heroBottom + 20) {
             nav.style.transform = 'translateY(0)';
         } else {
             nav.style.transform = 'translateY(-100%)';
