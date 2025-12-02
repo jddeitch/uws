@@ -38,8 +38,7 @@ setTimeout(function initHomeNav() {
         }
     }
     
-    // Set initial state
-    nav.style.transition = 'transform 0.3s ease-in-out';
+    // Set initial state (CSS already has transition and initial hide)
     updateNavVisibility();
     
     // Update on scroll
