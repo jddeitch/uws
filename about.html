@@ -7,19 +7,7 @@
     <title>About - United We Stand</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'united-red': '#DC2626',
-                        'united-red-dark': '#991B1B',
-                        'united-gold': '#FFD700',
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="./js/tailwind-config.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
@@ -35,8 +23,8 @@
     
     <!-- Hero Section -->
     <div class="pt-24 pb-12 bg-gradient-to-b from-gray-900 to-black">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-5xl font-black text-white mb-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl font-black text-white mb-4 uppercase">
                 About <span class="text-united-red">United We Stand</span>
             </h1>
             <p class="text-xl text-united-gold font-bold">
@@ -47,7 +35,7 @@
     
     <!-- Main Content -->
     <section class="py-16 bg-gradient-to-b from-black to-gray-900">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <!-- History Section -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
@@ -58,19 +46,16 @@
                     <h2 class="text-3xl font-black text-white">Our Story</h2>
                     
                     <p class="text-lg text-gray-300 leading-relaxed">
-                        First published in <span class="text-united-red font-bold">1989</span> when Manchester United was very different to the corporate beast it has become, 
-                        <span class="text-united-red font-bold">United We Stand</span> is an independent voice of Manchester United supporters.
+                        First published in <span class="text-united-gold font-semibold">1989</span> when Manchester United was very different to the corporate beast it has become, 
+                        <span class="text-united-red font-semibold">United We Stand</span> is an independent voice of Manchester United supporters.
                     </p>
                     
                     <p class="text-lg text-gray-300 leading-relaxed">
-                        We've since published <span class="text-united-gold font-bold">over 200 issues</span> — 11 per season — and the mag has long been established as one of Britain's 
-                        best selling football fanzines. Named <span class="text-united-gold font-bold">British Fanzine of the Year in 2012</span>, 
-                        UWS continues to be the authentic voice of match-going Reds.
+                        <span class="text-united-gold font-semibold">Award-winning</span> and <span class="text-united-gold font-semibold">best-selling</span>, we've published over 300 issues — 11 per season — and been named British Fanzine of the Year in 2012 and 2019. UWS continues to be the authentic voice of match-going Reds.
                     </p>
                     
                     <p class="text-lg text-gray-300 leading-relaxed">
-                        The majority of UWS writers watch Manchester United home and away. They're <span class="text-united-red font-bold">influential, incisive, irreverent</span> 
-                        and work for a mag which is proudly independent and funded by sales. Each issue features 44 pages and tells it like it is at MUFC.
+                        The majority of UWS writers watch Manchester United home and away. They're influential, incisive, irreverent and work for a mag which is proudly independent and funded by sales. Each issue features 44 pages and tells it like it is at MUFC.
                     </p>
                 </div>
             </div>
@@ -155,7 +140,7 @@
                 </p>
                 
                 <div class="bg-white/5 border border-white/10 rounded-xl p-8">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 text-center">
                         <div class="p-4">
                             <p class="text-white font-bold text-lg">Sir Alex Ferguson</p>
                             <p class="text-gray-400 text-sm">Manager</p>
@@ -165,12 +150,16 @@
                             <p class="text-gray-400 text-sm">Captain</p>
                         </div>
                         <div class="p-4">
-                            <p class="text-white font-bold text-lg">Ian Brown</p>
-                            <p class="text-gray-400 text-sm">Stone Roses</p>
+                            <p class="text-white font-bold text-lg">Jim Ratcliffe</p>
+                            <p class="text-gray-400 text-sm">Owner/Investor</p>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-white font-bold text-lg">Omar Berrada</p>
+                            <p class="text-gray-400 text-sm">Chief Executive</p>
                         </div>
                         <div class="p-4">
                             <p class="text-white font-bold text-lg">David Gill</p>
-                            <p class="text-gray-400 text-sm">Chief Executive</p>
+                            <p class="text-gray-400 text-sm">Former CEO</p>
                         </div>
                         <div class="p-4">
                             <p class="text-white font-bold text-lg">Martin Edwards</p>
@@ -178,7 +167,11 @@
                         </div>
                         <div class="p-4">
                             <p class="text-white font-bold text-lg">Peter Kenyon</p>
-                            <p class="text-gray-400 text-sm">Executive</p>
+                            <p class="text-gray-400 text-sm">Former Executive</p>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-white font-bold text-lg">Ian Brown</p>
+                            <p class="text-gray-400 text-sm">Stone Roses</p>
                         </div>
                         <div class="p-4 col-span-2">
                             <p class="text-white font-bold text-lg">...and many more</p>
@@ -194,13 +187,13 @@
             </div>
             
             <!-- Call to Action -->
-            <div class="bg-gradient-to-br from-united-red to-red-800 rounded-2xl p-8 md:p-12 text-center">
+            <div class="bg-[#0A0A0A] border border-white/8 rounded-2xl p-8 md:p-12 text-center">
                 <h2 class="text-3xl font-black text-white mb-4">Join the UWS Community</h2>
-                <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
                     As we move into our fourth decade of publication, UWS is still going strong. 
                     Be part of the independent voice of Manchester United.
                 </p>
-                <a href="/subscribe.html" class="inline-block bg-white hover:bg-united-gold text-united-red px-10 py-4 rounded-lg font-bold text-lg shadow-lg transition transform hover:scale-105">
+                <a href="./subscribe.html" class="inline-block bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-united-gold px-10 py-4 rounded-lg font-bold text-lg tracking-refined transition">
                     Subscribe Today
                 </a>
             </div>

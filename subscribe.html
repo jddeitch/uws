@@ -7,19 +7,7 @@
     <title>Subscribe - United We Stand</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'united-red': '#DC2626',
-                        'united-red-dark': '#991B1B',
-                        'united-gold': '#FFD700',
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="./js/tailwind-config.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
@@ -43,7 +31,7 @@
     <!-- Hero Section -->
     <div class="pt-24 pb-12 bg-gradient-to-b from-gray-900 to-black">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-5xl font-black text-white mb-4">
+            <h1 class="text-4xl sm:text-5xl font-black text-white mb-4 uppercase">
                 Subscribe to <span class="text-united-red">United We Stand</span>
             </h1>
             <p class="text-xl text-gray-300 leading-relaxed">
@@ -99,12 +87,12 @@
                         
                         <div class="grid grid-cols-2 gap-4">
                             <form action="https://shop.exacteditions.com/united-we-stand" method="get" class="w-full">
-                                <button type="submit" class="w-full bg-white hover:bg-united-gold text-united-red px-6 py-4 rounded-lg font-bold text-lg shadow-lg transition transform hover:scale-105">
+                                <button type="submit" class="w-full bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-white px-6 py-4 rounded-lg font-bold text-lg tracking-refined transition">
                                     Quarterly<br><span class="text-2xl">£7.99</span>
                                 </button>
                             </form>
                             <form action="https://shop.exacteditions.com/united-we-stand" method="get" class="w-full">
-                                <button type="submit" class="w-full bg-united-gold hover:bg-white text-black px-6 py-4 rounded-lg font-bold text-lg shadow-lg transition transform hover:scale-105">
+                                <button type="submit" class="w-full bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-gold text-white hover:border-white px-6 py-4 rounded-lg font-bold text-lg tracking-refined transition">
                                     Annual<br><span class="text-2xl">£29.99</span>
                                 </button>
                             </form>
@@ -168,7 +156,7 @@
                         <input type="hidden" name="currency_code" value="GBP">
                         <input type="hidden" name="return" value="https://www.uwsonline.com/thankyou.html">
                         <input type="hidden" name="undefined_quantity" value="1">
-                        <button type="submit" class="w-full bg-united-red hover:bg-white text-white hover:text-united-red px-6 py-3 rounded-lg font-bold transition transform hover:scale-105">
+                        <button type="submit" class="w-full bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-united-gold px-6 py-3 rounded-lg font-bold tracking-refined transition">
                             Subscribe
                         </button>
                     </form>
@@ -220,7 +208,7 @@
                         <input type="hidden" name="currency_code" value="GBP">
                         <input type="hidden" name="return" value="https://www.uwsonline.com/thankyou.html">
                         <input type="hidden" name="undefined_quantity" value="1">
-                        <button type="submit" class="w-full bg-united-red hover:bg-white text-white hover:text-united-red px-6 py-3 rounded-lg font-bold transition transform hover:scale-105">
+                        <button type="submit" class="w-full bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-united-gold px-6 py-3 rounded-lg font-bold tracking-refined transition">
                             Subscribe
                         </button>
                     </form>
@@ -272,7 +260,7 @@
                         <input type="hidden" name="currency_code" value="GBP">
                         <input type="hidden" name="return" value="https://www.uwsonline.com/thankyou.html">
                         <input type="hidden" name="undefined_quantity" value="1">
-                        <button type="submit" class="w-full bg-united-red hover:bg-white text-white hover:text-united-red px-6 py-3 rounded-lg font-bold transition transform hover:scale-105">
+                        <button type="submit" class="w-full bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-united-gold px-6 py-3 rounded-lg font-bold tracking-refined transition">
                             Subscribe
                         </button>
                     </form>

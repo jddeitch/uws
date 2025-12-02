@@ -25,19 +25,7 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'united-red': '#DC2626', // Softer red (Tailwind red-600)
-                        'united-red-dark': '#991B1B', // Darker shade for hover (Tailwind red-800)
-                        'united-gold': '#FFD700',
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="./js/tailwind-config.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
@@ -52,9 +40,9 @@
     <div id="site-nav"></div>
     
     <!-- Hero Section -->
-    <section class="pt-24 pb-16 bg-gradient-to-b from-gray-900 to-black">
+    <section class="pt-12 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-b from-gray-900 to-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center lg:items-center max-w-6xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-12 items-center lg:items-center max-w-6xl mx-auto">
                 
                 <!-- Left: Magazine Cover -->
                 <div class="flex justify-center lg:justify-start">
@@ -62,28 +50,37 @@
                         <img id="current-cover" 
                              src="./images/mags/themag.jpg" 
                              alt="United We Stand - Latest Issue" 
-                             class="rounded-lg shadow-2xl w-full max-w-sm lg:max-w-xs flex-shrink-0">
+                             class="rounded-lg shadow-2xl w-full max-w-[280px] sm:max-w-sm lg:max-w-xs flex-shrink-0">
                     </div>
                 </div>
                 
                 <!-- Right: Content -->
-                <div class="text-center lg:text-left space-y-6 flex-1">
-                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight">
-                        <span class="text-white">United</span>
-                        <span class="text-united-red"> We Stand</span>
+                <div class="text-center lg:text-left space-y-3 sm:space-y-6 flex-1">
+                    <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black leading-none uppercase">
+                        <span class="text-white">United</span><br>
+                        <span class="text-united-red">We Stand</span>
                     </h1>
                     
-                    <p class="text-xl sm:text-2xl text-gray-300 font-semibold">
+                    <div class="flex items-center justify-center lg:justify-start space-x-4 mb-2 sm:mb-4">
+                        <div class="h-px w-8 sm:w-12 bg-united-gold"></div>
+                        <p class="text-united-gold text-xs sm:text-sm font-bold tracking-wider uppercase">Since 1989</p>
+                    </div>
+                    
+                    <p class="text-xl sm:text-2xl text-gray-300 font-light leading-relaxed">
                         The Manchester United Fanzine
                     </p>
                     
-                    <p class="text-lg text-united-gold font-bold leading-relaxed">
-                        The award-winning, best-selling fanzine of the 20 times champions of England.
+                    <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
+                        <span class="text-united-gold font-semibold">Award-winning</span> and 
+                        <span class="text-united-gold font-semibold">best-selling</span> fanzine of the 20 times champions of England.
                     </p>
                     
-                    <div class="flex justify-center lg:justify-start pt-6">
-                        <a href="/subscribe.html" class="bg-united-red hover:bg-united-red-dark text-white px-10 py-4 rounded-lg font-bold text-lg shadow-lg transition transform hover:scale-105">
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2 sm:pt-4">
+                        <a href="/subscribe.html" class="bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-united-gold px-8 sm:px-10 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg tracking-refined transition">
                             Subscribe Now
+                        </a>
+                        <a href="/about.html" class="border border-white/20 text-white hover:border-white/40 hover:bg-white/5 px-8 sm:px-10 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition">
+                            Learn More
                         </a>
                     </div>
                 </div>
@@ -101,17 +98,14 @@
                 
                 <div class="space-y-4 text-lg text-gray-300 leading-relaxed">
                     <p>
-                        First published in <span class="text-united-gold font-bold">1989</span>, United We Stand is the authentic voice of Manchester United supporters. Edited by <span class="text-united-gold font-bold">Andy Mitten</span>, a lifelong Red who watches United home and away, UWS delivers honest, informed opinion from those who actually go to the games.
+                        First published in <span class="text-united-gold font-semibold">1989</span>, United We Stand is the authentic voice of Manchester United supporters. Edited by <span class="text-united-gold font-semibold">Andy Mitten</span>, a lifelong Red who watches United home and away, UWS delivers honest, informed opinion from those who actually go to the games.
                     </p>
                     
                     <p>
-                        With <span class="text-united-gold font-bold">over 300 issues</span> published and named 
-                        <span class="text-united-gold font-bold">Fanzine of the Year</span> in 2012 and 2019, 
-                        UWS is proudly independent — not owned by the club, not beholden to advertisers. 
-                        Each of the 11 issues per season features 44 pages of analysis, opinion, and the truth about Manchester United.
+                        <span class="text-united-gold font-semibold">Award-winning</span> and <span class="text-united-gold font-semibold">best-selling</span>, with over 300 issues published and named British Fanzine of the Year in 2012 and 2019, UWS is proudly independent — not owned by the club, not beholden to advertisers. Each of the 11 issues per season features 44 pages of analysis, opinion, and the truth about Manchester United.
                     </p>
                     
-                    <p class="text-xl text-united-gold font-bold italic">
+                    <p class="text-xl text-gray-300 italic">
                         Influential. Incisive. Irreverent.
                     </p>
                 </div>
@@ -131,64 +125,58 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
                 <!-- Podcast -->
-                <a href="./podcast.html" class="group bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl p-8 transition">
-                    <div class="flex items-center space-x-4 mb-4">
-                        <div class="bg-united-red p-3 rounded-lg">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">Podcast</h3>
+                <a href="./podcast.html" class="group bg-[#0A0A0A] border border-white/8 hover:border-white/15 rounded-xl p-8 transition">
+                    <div class="mb-6">
+                        <svg class="w-12 h-12 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"/>
+                        </svg>
                     </div>
-                    <p class="text-gray-300 group-hover:text-white transition">
+                    <h3 class="text-2xl font-bold text-white mb-3">Podcast</h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">
                         Interviews, post-match commentary, and honest analysis from the UWS team.
                     </p>
-                    <div class="mt-4 text-united-red group-hover:text-united-gold font-semibold flex items-center transition">
+                    <div class="text-gray-400 group-hover:text-white font-medium inline-flex items-center transition">
                         Listen Now
-                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
                     </div>
                 </a>
                 
                 <!-- Forum -->
-                <a href="https://forum.uwsonline.com" target="_blank" class="group bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl p-8 transition">
-                    <div class="flex items-center space-x-4 mb-4">
-                        <div class="bg-united-red p-3 rounded-lg">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
-                                <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">Forum</h3>
+                <a href="https://forum.uwsonline.com" target="_blank" class="group bg-[#0A0A0A] border border-white/8 hover:border-white/15 rounded-xl p-8 transition">
+                    <div class="mb-6">
+                        <svg class="w-12 h-12 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
+                            <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/>
+                        </svg>
                     </div>
-                    <p class="text-gray-300 group-hover:text-white transition">
+                    <h3 class="text-2xl font-bold text-white mb-3">Forum</h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">
                         Join thousands of Reds discussing everything United. Your voice matters.
                     </p>
-                    <div class="mt-4 text-united-red group-hover:text-united-gold font-semibold flex items-center transition">
+                    <div class="text-gray-400 group-hover:text-white font-medium inline-flex items-center transition">
                         Join Discussion
-                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
                     </div>
                 </a>
                 
                 <!-- Archive -->
-                <a href="./archive.html" class="group bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl p-8 transition">
-                    <div class="flex items-center space-x-4 mb-4">
-                        <div class="bg-united-red p-3 rounded-lg">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">Archive</h3>
+                <a href="./archive.html" class="group bg-[#0A0A0A] border border-white/8 hover:border-white/15 rounded-xl p-8 transition">
+                    <div class="mb-6">
+                        <svg class="w-12 h-12 text-united-red" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+                        </svg>
                     </div>
-                    <p class="text-gray-300 group-hover:text-white transition">
+                    <h3 class="text-2xl font-bold text-white mb-3">Archive</h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">
                         Browse 35 years and 200+ issues documenting Manchester United's journey.
                     </p>
-                    <div class="mt-4 text-united-red group-hover:text-united-gold font-semibold flex items-center transition">
+                    <div class="text-gray-400 group-hover:text-white font-medium inline-flex items-center transition">
                         Explore History
-                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
                     </div>
