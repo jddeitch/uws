@@ -10,12 +10,9 @@
 
 const axios = require('axios');
 const cheerio = require('cheerio');
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
-const { createWriteStream } = require('fs');
-const { pipeline } = require('stream');
-const { promisify } = require('util');
-const streamPipeline = promisify(pipeline);
 
 const EXACT_EDITIONS_URL = 'https://shop.exacteditions.com/united-we-stand';
 const DATA_FILE = path.join(__dirname, '../data/current-issue.json');
@@ -97,37 +94,44 @@ async function fetchLatestCover() {
         console.log('Page title:', issueTitle);
         if (issueDescription) console.log('Description:', issueDescription);
 
-        // Read current data
-        let currentData = {};
-        if (fs.existsSync(DATA_FILE)) {
-            currentData = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-        }
-
-        // Check if URL has changed
-        if (currentData.coverImageExternal === coverImageUrl) {
-            console.log('✅ Cover image unchanged - no update needed');
-            return false;
-        }
-
-        console.log('📸 New cover detected!');
-        console.log(`   Old: ${currentData.coverImageExternal || 'none'}`);
-        console.log(`   New: ${coverImageUrl}`);
-
-        // Download the image directly to themag.jpg
+        // Download the cover image to a temp file first
         console.log('⬇️  Downloading cover image...');
         const imageResponse = await axios.get(coverImageUrl, {
-            responseType: 'stream',
+            responseType: 'arraybuffer',
             headers: {
                 'User-Agent': 'Mozilla/5.0 (compatible; UWS-Bot/1.0; +https://uwsonline.com)',
                 'Referer': EXACT_EDITIONS_URL
             }
         });
 
-        const imagePath = path.join(__dirname, '../images/mags/themag.jpg');
-        const writer = createWriteStream(imagePath);
+        const newImageBuffer = Buffer.from(imageResponse.data);
+        const newHash = crypto.createHash('md5').update(newImageBuffer).digest('hex');
 
-        await streamPipeline(imageResponse.data, writer);
+        // Compare against existing file content (URL is a stable permalink
+        // that doesn't change between issues, so we compare bytes instead)
+        const imagePath = path.join(__dirname, '../images/mags/themag.jpg');
+        let changed = true;
+        if (fs.existsSync(imagePath)) {
+            const existingBuffer = fs.readFileSync(imagePath);
+            const existingHash = crypto.createHash('md5').update(existingBuffer).digest('hex');
+            if (existingHash === newHash) {
+                console.log('✅ Cover image unchanged - no update needed');
+                return false;
+            }
+            console.log(`📸 New cover detected! (hash ${existingHash.slice(0, 8)} → ${newHash.slice(0, 8)})`);
+        } else {
+            console.log('📸 No existing cover - saving new one');
+        }
+
+        // Write the new image
+        fs.writeFileSync(imagePath, newImageBuffer);
         console.log('✅ Cover image saved to:', imagePath);
+
+        // Read current data
+        let currentData = {};
+        if (fs.existsSync(DATA_FILE)) {
+            currentData = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+        }
 
         // Update data
         const updatedData = {
