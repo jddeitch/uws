@@ -6,22 +6,25 @@
     <meta name="description" content="Subscribe to United We Stand - Get 10 issues of Britain's best Manchester United fanzine delivered to your door.">
     <title>Subscribe - United We Stand</title>
     
+    <!-- Tailwind CSS (Play CDN — config must be inline JS, not CSS) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./js/tailwind-config.js"></script>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'united-red': '#C00',
+                    'united-gold': '#FFD700',
+                    'gradient-red-dark': '#1a0000',
+                },
+                letterSpacing: {
+                    'refined': '0.05em',
+                }
+            }
         }
-        .subscription-card {
-            transition: all 0.3s ease;
-        }
-        .subscription-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(204, 0, 0, 0.3);
-        }
-    </style>
+    };
+    </script>
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body class="bg-black text-white antialiased">
     

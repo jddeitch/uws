@@ -1,15 +1,4 @@
 {
-  "articles": [
-    {
-      "title": "Example Article Title",
-      "author": "Andy Mitten",
-      "publication": "The Athletic",
-      "url": "https://example.com",
-      "date": "2024-12-01",
-      "description": "A brief description of the article content...",
-      "featured": true
-    }
-  ],
-  "note": "Add Andy's external articles here as they're published"
+  "articles": [],
+  "note": "Andy Mitten's external articles (The Athletic, etc). Populated when needed. Nothing currently reads this file — it exists as a data stub for a future feature."
 }
-

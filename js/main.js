@@ -15,18 +15,19 @@ async function loadCurrentIssue() {
     try {
         const response = await fetch('./data/current-issue.json');
         const data = await response.json();
-        
-        // Update cover image on homepage
-        const coverImg = document.getElementById('current-cover');
-        if (coverImg) {
-            // Use external cover if available, otherwise fall back to local
-            const coverSrc = data.coverImageExternal || data.coverImage || '/images/mags/themag.jpg';
-            coverImg.src = coverSrc;
-            coverImg.alt = `United We Stand Issue ${data.issueNumber || 'Latest'}`;
-            
-            console.log('Cover loaded:', coverSrc);
-        }
-        
+
+        // Prefer local cover (updated by GitHub Action) to avoid flash.
+        // Only fall back to external URL if local path isn't set.
+        const coverSrc = data.coverImage || './images/mags/themag.jpg';
+        const altText = `United We Stand Issue ${data.issueNumber || 'Latest'}`;
+
+        // Update both desktop and mobile cover images
+        const covers = document.querySelectorAll('#current-cover, #current-cover-mobile');
+        covers.forEach(img => {
+            img.src = coverSrc;
+            img.alt = altText;
+        });
+
     } catch (error) {
         console.error('Error loading current issue:', error);
         // Fallback to default content - already set in HTML

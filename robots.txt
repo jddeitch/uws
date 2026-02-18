@@ -1,16 +1,32 @@
 # Robots.txt for United We Stand
-# Allow all search engines to crawl the site
+# https://www.uwsonline.com
 
 User-agent: *
 Allow: /
 
-# Sitemap (GitHub Pages will auto-generate)
 Sitemap: https://www.uwsonline.com/sitemap.xml
 
-# Disallow crawling of old PHP includes (if any remain)
-Disallow: /old-site/includes/
-Disallow: /old-site/cgi-bin/
-
-# Disallow scripts directory
+# Block internal/legacy directories
+Disallow: /old-site/
 Disallow: /scripts/
+Disallow: /_internal/
 
+# AI crawlers — explicitly permitted
+# UWS is a public fanzine and welcomes AI indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /

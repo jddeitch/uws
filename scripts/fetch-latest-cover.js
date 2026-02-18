@@ -5,7 +5,7 @@
  * and updates the current-issue.json file automatically.
  * 
  * Run: npm install axios cheerio
- * Usage: node _internal/scripts/fetch-latest-cover.js
+ * Usage: node scripts/fetch-latest-cover.js
  */
 
 const axios = require('axios');
@@ -88,23 +88,32 @@ async function fetchLatestCover() {
         
         console.log('Found cover URL:', coverImageUrl);
         
+        // Extract metadata from the page
+        const issueTitle = $('meta[property="og:title"]').attr('content') || '';
+        const issueDescription = $('meta[property="og:description"]').attr('content') || '';
+
+        // Try to extract issue number/date from the title or description
+        // Exact Editions titles often include the issue info
+        console.log('Page title:', issueTitle);
+        if (issueDescription) console.log('Description:', issueDescription);
+
         // Read current data
         let currentData = {};
         if (fs.existsSync(DATA_FILE)) {
             currentData = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
         }
-        
+
         // Check if URL has changed
         if (currentData.coverImageExternal === coverImageUrl) {
             console.log('✅ Cover image unchanged - no update needed');
             return false;
         }
-        
+
         console.log('📸 New cover detected!');
         console.log(`   Old: ${currentData.coverImageExternal || 'none'}`);
         console.log(`   New: ${coverImageUrl}`);
-        
-        // Download the image
+
+        // Download the image directly to themag.jpg
         console.log('⬇️  Downloading cover image...');
         const imageResponse = await axios.get(coverImageUrl, {
             responseType: 'stream',
@@ -113,37 +122,31 @@ async function fetchLatestCover() {
                 'Referer': EXACT_EDITIONS_URL
             }
         });
-        
-        // Save to images/mags/themag-latest.jpg
-        const imagePath = path.join(__dirname, '../images/mags/themag-latest.jpg');
+
+        const imagePath = path.join(__dirname, '../images/mags/themag.jpg');
         const writer = createWriteStream(imagePath);
-        
+
         await streamPipeline(imageResponse.data, writer);
-        console.log('✅ Image downloaded to:', imagePath);
-        
-        // Also update themag.jpg (the default)
-        const defaultPath = path.join(__dirname, '../images/mags/themag.jpg');
-        fs.copyFileSync(imagePath, defaultPath);
-        console.log('✅ Updated default cover (themag.jpg)');
-        
+        console.log('✅ Cover image saved to:', imagePath);
+
         // Update data
         const updatedData = {
             issueNumber: currentData.issueNumber || 'Latest',
-            coverImage: '/images/mags/themag.jpg', // Local copy (updated)
-            coverImageExternal: coverImageUrl, // Original URL from Exact Editions
+            coverImage: './images/mags/themag.jpg',
+            coverImageExternal: coverImageUrl,
             publicationDate: new Date().toISOString().split('T')[0],
             exactEditionsUrl: EXACT_EDITIONS_URL,
             lastUpdated: new Date().toISOString(),
             note: 'Cover image automatically downloaded from Exact Editions'
         };
-        
+
         // Write updated data
         fs.writeFileSync(
             DATA_FILE,
             JSON.stringify(updatedData, null, 2),
             'utf8'
         );
-        
+
         console.log('✅ Successfully updated current-issue.json');
         console.log(`📝 File updated at: ${DATA_FILE}`);
         return true;
