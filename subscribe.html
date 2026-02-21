@@ -90,12 +90,12 @@
                     <div class="grid grid-cols-2 gap-4">
                         <form action="https://shop.exacteditions.com/united-we-stand" method="get" class="w-full">
                             <button type="submit" class="w-full bg-united-red hover:bg-united-red-hover text-white px-6 py-4 rounded-lg font-bold text-lg tracking-refined transition">
-                                Quarterly<br><span class="text-2xl">£7.99</span>
+                                Quarterly<br><span class="text-2xl" data-price="digital_quarterly">£7.99</span>
                             </button>
                         </form>
                         <form action="https://shop.exacteditions.com/united-we-stand" method="get" class="w-full">
                             <button type="submit" class="w-full bg-united-red hover:bg-united-red-hover text-white px-6 py-4 rounded-lg font-bold text-lg tracking-refined transition">
-                                Annual<br><span class="text-2xl">£29.99</span>
+                                Annual<br><span class="text-2xl" data-price="digital_annual">£29.99</span>
                             </button>
                         </form>
                     </div>
@@ -120,10 +120,10 @@
                             </svg>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-2">UK Delivery</h3>
-                        <p class="text-4xl font-black text-united-red mb-1">£44.99</p>
+                        <p class="text-4xl font-black text-united-red mb-1" data-price="print_uk">£44.99</p>
                         <p class="text-gray-400">11 issues</p>
                     </div>
-                    
+
                     <ul class="space-y-2 mb-6 text-gray-300">
                         <li class="flex items-center space-x-2">
                             <svg class="w-5 h-5 text-united-red" fill="currentColor" viewBox="0 0 20 20">
@@ -150,7 +150,7 @@
                         <input type="hidden" name="add" value="1">
                         <input type="hidden" name="business" value="uwsmag@yahoo.co.uk">
                         <input type="hidden" name="item_name" value="United We Stand 11 issue subscription - UK">
-                        <input type="hidden" name="amount" value="44.99">
+                        <input type="hidden" name="amount" value="44.99" data-paypal-amount="print_uk">
                         <input type="hidden" name="shipping" value="0">
                         <input type="hidden" name="shipping2" value="0">
                         <input type="hidden" name="handling" value="0">
@@ -172,7 +172,7 @@
                             </svg>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-2">Europe</h3>
-                        <p class="text-4xl font-black text-united-red mb-1">£59.99</p>
+                        <p class="text-4xl font-black text-united-red mb-1" data-price="print_europe">£59.99</p>
                         <p class="text-gray-400">11 issues</p>
                     </div>
                     
@@ -202,7 +202,7 @@
                         <input type="hidden" name="add" value="1">
                         <input type="hidden" name="business" value="uwsmag@yahoo.co.uk">
                         <input type="hidden" name="item_name" value="United We Stand 11 issue subscription - Europe">
-                        <input type="hidden" name="amount" value="59.99">
+                        <input type="hidden" name="amount" value="59.99" data-paypal-amount="print_europe">
                         <input type="hidden" name="shipping" value="0">
                         <input type="hidden" name="shipping2" value="0">
                         <input type="hidden" name="handling" value="0">
@@ -224,7 +224,7 @@
                             </svg>
                         </div>
                         <h3 class="text-2xl font-bold text-white mb-2">Worldwide</h3>
-                        <p class="text-4xl font-black text-united-red mb-1">£69.99</p>
+                        <p class="text-4xl font-black text-united-red mb-1" data-price="print_worldwide">£69.99</p>
                         <p class="text-gray-400">11 issues</p>
                     </div>
                     
@@ -254,7 +254,7 @@
                         <input type="hidden" name="add" value="1">
                         <input type="hidden" name="business" value="uwsmag@yahoo.co.uk">
                         <input type="hidden" name="item_name" value="United We Stand 11 issue subscription - Rest of World">
-                        <input type="hidden" name="amount" value="69.99">
+                        <input type="hidden" name="amount" value="69.99" data-paypal-amount="print_worldwide">
                         <input type="hidden" name="shipping" value="0">
                         <input type="hidden" name="shipping2" value="0">
                         <input type="hidden" name="handling" value="0">
@@ -293,6 +293,21 @@
     
     <script src="./js/config.js"></script>
     <script src="./js/main.js"></script>
+    <script>
+    // Load prices from data/pricing.json (hardcoded values are fallback)
+    fetch('./data/pricing.json')
+        .then(function(r) { return r.json(); })
+        .then(function(pricing) {
+            document.querySelectorAll('[data-price]').forEach(function(el) {
+                var price = pricing[el.dataset.price];
+                if (price) el.textContent = '\u00A3' + price;
+            });
+            document.querySelectorAll('[data-paypal-amount]').forEach(function(el) {
+                var price = pricing[el.dataset.paypalAmount];
+                if (price) el.value = price;
+            });
+        });
+    </script>
 </body>
 </html>
 
