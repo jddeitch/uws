@@ -30,14 +30,14 @@ jobs:
       - name: Check for changes
         id: git-check
         run: |
-          git diff --exit-code data/current-issue.json images/mags/ || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --exit-code data/current-issue.json images/mags/ images/og-image.jpg || echo "changed=true" >> $GITHUB_OUTPUT
       
       - name: Commit and push if changed
         if: steps.git-check.outputs.changed == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add data/current-issue.json images/mags/
+          git add data/current-issue.json images/mags/ images/og-image.jpg
           git commit -m "🤖 Auto-update: Latest magazine cover from Exact Editions"
           git push
       

@@ -153,6 +153,15 @@ async function fetchLatestCover() {
 
         console.log('✅ Successfully updated current-issue.json');
         console.log(`📝 File updated at: ${DATA_FILE}`);
+
+        // Generate OG image with new cover
+        try {
+            const { generateOgImage } = require('./generate-og-image');
+            await generateOgImage();
+        } catch (ogError) {
+            console.error('⚠️ OG image generation failed (non-fatal):', ogError.message);
+        }
+
         return true;
         
     } catch (error) {
