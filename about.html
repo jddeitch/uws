@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="About United We Stand - Britain's best-selling Manchester United fanzine since 1989. Independent, influential, irreverent.">
     <title>About - United We Stand</title>
-    
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
     <!-- Tailwind CSS (Play CDN — config must be inline JS, not CSS) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -14,8 +17,10 @@
             extend: {
                 colors: {
                     'united-red': '#C00',
+                    'united-red-hover': '#A00',
                     'united-gold': '#FFD700',
                     'gradient-red-dark': '#1a0000',
+                    'surface': '#0A0A0A',
                 },
                 letterSpacing: {
                     'refined': '0.05em',
@@ -31,33 +36,22 @@
     <!-- Navigation -->
     <div id="site-nav"></div>
     
-    <!-- Hero Section -->
-    <div class="pt-24 pb-12 bg-gradient-to-b from-gray-900 to-black">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl sm:text-5xl font-black text-white mb-4 uppercase">
-                About <span class="text-united-red">United We Stand</span>
-            </h1>
-            <p class="text-xl text-united-gold font-bold">
-                British Fanzine of the Year 2012
-            </p>
-        </div>
-    </div>
-    
     <!-- Main Content -->
-    <section class="py-16 bg-gradient-to-b from-black to-gray-900">
+    <section class="pt-24 pb-16 bg-gradient-to-b from-gray-900 via-black to-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <!-- History Section -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
+
+            <!-- Our Story -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:items-center mb-20">
                 <div class="lg:col-span-1 flex justify-center">
-                    <img src="./images/mags/front1.jpg" alt="Early UWS Issue" class="rounded-lg shadow-2xl w-full max-w-xs">
+                    <img src="./images/mags/themag.jpg" alt="United We Stand - Current Issue" class="rounded-lg shadow-2xl w-full max-w-xs">
                 </div>
                 <div class="lg:col-span-2 space-y-6">
-                    <h2 class="text-3xl font-black text-white">Our Story</h2>
+                    <h1>Our Story</h1>
+                    <p class="text-united-gold font-bold">British Fanzine of the Year 2012 &amp; 2019</p>
                     
                     <p class="text-lg text-gray-300 leading-relaxed">
                         First published in <span class="text-united-gold font-semibold">1989</span> when Manchester United was very different to the corporate beast it has become, 
-                        <span class="text-united-red font-semibold">United We Stand</span> is an independent voice of Manchester United supporters.
+                        <span class="text-white font-semibold">United We Stand</span> is an independent voice of Manchester United supporters.
                     </p>
                     
                     <p class="text-lg text-gray-300 leading-relaxed">
@@ -71,14 +65,14 @@
             </div>
             
             <!-- What Makes Us Different -->
-            <div class="bg-gradient-to-br from-united-red/10 to-black border border-white/10 rounded-2xl p-8 md:p-12 mb-16">
+            <div class="mb-20">
                 <h2 class="text-3xl font-black text-white mb-8 text-center">What Makes Us Different</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="flex items-start space-x-4">
                         <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-united-red rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-12 h-12 bg-united-red/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-united-red" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
                             </div>
@@ -93,8 +87,8 @@
                     
                     <div class="flex items-start space-x-4">
                         <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-united-red rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-12 h-12 bg-united-red/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-united-red" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
                                     <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
                                 </svg>
@@ -110,8 +104,8 @@
                     
                     <div class="flex items-start space-x-4">
                         <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-united-red rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-12 h-12 bg-united-red/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-united-red" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                                 </svg>
                             </div>
@@ -126,8 +120,8 @@
                     
                     <div class="flex items-start space-x-4">
                         <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-united-red rounded-lg flex items-center justify-center">
-                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="w-12 h-12 bg-united-red/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-united-red" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
                                 </svg>
                             </div>
@@ -143,7 +137,7 @@
             </div>
             
             <!-- Heritage Interviews -->
-            <div class="mb-16">
+            <div class="mb-20">
                 <h2 class="text-3xl font-black text-white mb-8 text-center">Legendary Interviews</h2>
                 <p class="text-lg text-gray-300 leading-relaxed text-center mb-8 max-w-3xl mx-auto">
                     Over three decades, UWS has carried in-depth interviews with United-related personalities that matter:
@@ -197,13 +191,13 @@
             </div>
             
             <!-- Call to Action -->
-            <div class="bg-[#0A0A0A] border border-white/8 rounded-2xl p-8 md:p-12 text-center">
+            <div class="text-center">
                 <h2 class="text-3xl font-black text-white mb-4">Join the UWS Community</h2>
                 <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-                    As we move into our fourth decade of publication, UWS is still going strong. 
+                    As we move into our fourth decade of publication, UWS is still going strong.
                     Be part of the independent voice of Manchester United.
                 </p>
-                <a href="./subscribe.html" class="inline-block bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-united-gold px-10 py-4 rounded-lg font-bold text-lg tracking-refined transition">
+                <a href="./subscribe.html" class="inline-block bg-united-red hover:bg-united-red-hover text-white shadow-lg shadow-united-red/20 px-10 py-4 rounded-lg font-bold text-lg tracking-refined transition">
                     Subscribe Today
                 </a>
             </div>

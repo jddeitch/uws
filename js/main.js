@@ -34,39 +34,4 @@ async function loadCurrentIssue() {
     }
 }
 
-/**
- * Format date for display
- */
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('en-GB', options);
-}
-
-/**
- * Smooth scroll to element
- */
-function scrollToElement(elementId) {
-    const element = document.getElementById(elementId);
-    if (element) {
-        element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-}
-
-
-/**
- * Track outbound links (for analytics)
- */
-document.addEventListener('click', function(e) {
-    const link = e.target.closest('a');
-    if (link && link.href && link.host !== window.location.host) {
-        // Track external link clicks
-        const destination = link.href;
-        console.log('External link clicked:', destination);
-        // Add analytics tracking here if needed
-    }
-});
 

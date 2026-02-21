@@ -18,8 +18,10 @@
             extend: {
                 colors: {
                     'united-red': '#C00',
+                    'united-red-hover': '#A00',
                     'united-gold': '#FFD700',
                     'gradient-red-dark': '#1a0000',
+                    'surface': '#0A0A0A',
                 },
                 letterSpacing: {
                     'refined': '0.05em',
@@ -48,7 +50,7 @@
                     </div>
                 </div>
                 
-                <h1 class="text-4xl sm:text-5xl font-black text-white mb-6 uppercase">
+                <h1 class="mb-6">
                     Thank You!
                 </h1>
                 
@@ -74,7 +76,7 @@
                 <div class="mt-12 pt-8 border-t border-gray-800">
                     <h2 class="text-2xl font-bold text-white mb-6">What's Next?</h2>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
                         <a href="./podcast.html" class="bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-6 transition">
                             <div class="text-united-red mb-3">
                                 <svg class="w-10 h-10 mx-auto" fill="currentColor" viewBox="0 0 20 20">
@@ -84,7 +86,7 @@
                             <h3 class="font-bold text-white mb-2">Listen to the Podcast</h3>
                             <p class="text-gray-400 text-sm">Match analysis and interviews</p>
                         </a>
-                        
+
                         <a href="https://forum.uwsonline.com" target="_blank" class="bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-6 transition">
                             <div class="text-united-red mb-3">
                                 <svg class="w-10 h-10 mx-auto" fill="currentColor" viewBox="0 0 20 20">
@@ -95,22 +97,12 @@
                             <h3 class="font-bold text-white mb-2">Join the Forum</h3>
                             <p class="text-gray-400 text-sm">Discuss with fellow Reds</p>
                         </a>
-                        
-                        <a href="./archive.html" class="bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-6 transition">
-                            <div class="text-united-red mb-3">
-                                <svg class="w-10 h-10 mx-auto" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
-                                </svg>
-                            </div>
-                            <h3 class="font-bold text-white mb-2">Browse the Archive</h3>
-                            <p class="text-gray-400 text-sm">35+ years of United history</p>
-                        </a>
                     </div>
                 </div>
                 
                 <!-- Return Home -->
                 <div class="mt-12">
-                    <a href="./" class="inline-block bg-gradient-to-br from-black to-gradient-red-dark border-2 border-united-red text-white hover:border-united-gold px-8 py-3 rounded-lg font-bold tracking-refined transition">
+                    <a href="./" class="inline-block bg-united-red hover:bg-united-red-hover text-white shadow-lg shadow-united-red/20 px-8 py-3 rounded-lg font-bold tracking-refined transition">
                         Return to Homepage
                     </a>
                 </div>

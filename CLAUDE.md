@@ -67,7 +67,7 @@ When code is reviewed, fix every issue found. "We'll fix it later" means it neve
 
 | Layer | Tool |
 |---|---|
-| Markup | Static HTML (6 pages) |
+| Markup | Static HTML (5 pages: index, about, subscribe, podcast, thankyou) |
 | Styling | Tailwind CSS v4 via CDN + `css/styles.css` (central stylesheet) |
 | JavaScript | Vanilla JS, no bundler, no framework |
 | Fonts | Inter (400, 600, 700, 900) via Google Fonts |
@@ -77,25 +77,30 @@ When code is reviewed, fix every issue found. "We'll fix it later" means it neve
 
 ## Design System
 
+Full visual reference: `_internal/design-system.html`
+
 | Token | Value | Usage |
 |---|---|---|
-| `--united-red` | `#CC0000` | Primary brand, buttons, headings, icons |
-| `--united-gold` | `#FFD700` | Accent text, highlights, "Since 1989" |
-| `--gradient-red-dark` | `#1a0000` | Dark end of button gradients |
+| `united-red` | `#CC0000` | Primary brand, CTA buttons, headings, icons |
+| `united-red-hover` | `#AA0000` | Button hover state only |
+| `united-gold` | `#FFD700` | Accent text, "Since 1989". Do not add more gold. |
+| `gradient-red-dark` | `#1a0000` | Legacy — kept in config but not actively used |
+| `surface` | `#0A0A0A` | Card backgrounds on black pages |
 
 - Dark theme: `bg-black`, `bg-gray-900` for nav, gradients between the two
 - Typography: Inter, uppercase headings, `tracking-refined` (0.05em) on buttons
 - Cards: `bg-white/5 border border-white/10 rounded-xl`
-- Buttons: gradient black-to-dark-red, red border, gold on hover
+- Buttons: solid red `bg-united-red hover:bg-united-red-hover text-white shadow-lg shadow-united-red/20 rounded-lg font-bold tracking-refined transition`
+- No inline styles. No hex codes in HTML. Use Tailwind tokens only.
 
 ## File Structure
 
 ```
-/                       # HTML pages (index, about, subscribe, archive, podcast, thankyou)
-/css/styles.css         # Central stylesheet (Tailwind config, custom properties, all page styles)
+/                       # HTML pages (index, about, subscribe, podcast, thankyou)
+/css/styles.css         # Central stylesheet (fonts, homepage nav rule)
 /components/            # Nav and footer (loaded via fetch() in config.js)
-/js/                    # config.js, main.js, homepage-nav.js, archive.js
-/data/                  # JSON: current-issue.json, external-articles.json
+/js/                    # config.js, main.js, homepage-nav.js
+/data/                  # JSON: current-issue.json
 /images/                # Public assets only
 /images/mags/           # Magazine covers (80+)
 /scripts/               # Node.js automation (cover fetcher)
@@ -132,7 +137,7 @@ Use compound-engineering review agents automatically at these points:
 
 ## Gotchas
 
-- **Tailwind is CDN mode (Play CDN), not a build step.** The site loads `https://cdn.tailwindcss.com` as a `<script>` tag — Tailwind v3 compiles classes in the browser at runtime. There is no `tailwindcss` in package.json, no PostCSS, no build pipeline. This means the `tailwind.config` **must** be set via an inline `<script>` block (`tailwind.config = {...}`) on every page — it cannot live in a CSS file. The custom colors (`united-red`, `united-gold`, `gradient-red-dark`) and `tracking-refined` only work because of this JS config. Don't try to move the config into CSS or create a separate tailwind-config.js file. If you want ONE place for it, you'd need to add a build step.
+- **Tailwind is CDN mode (Play CDN), not a build step.** The site loads `https://cdn.tailwindcss.com` as a `<script>` tag — Tailwind v3 compiles classes in the browser at runtime. There is no `tailwindcss` in package.json, no PostCSS, no build pipeline. This means the `tailwind.config` **must** be set via an inline `<script>` block (`tailwind.config = {...}`) on every page — it cannot live in a CSS file. The custom colors (`united-red`, `united-red-hover`, `united-gold`, `gradient-red-dark`, `surface`) and `tracking-refined` only work because of this JS config. Don't try to move the config into CSS or create a separate tailwind-config.js file. If you want ONE place for it, you'd need to add a build step.
 - **Relative paths everywhere** — GitHub Pages requires `./` prefix on all links and assets. Never use absolute paths like `/images/...`.
 - **Component loading is async** — nav and footer load via `fetch()`. Any JS that touches nav elements must wait for the component to load (see `homepage-nav.js` for the pattern).
 - **Cover image is auto-updated** — `scripts/fetch-latest-cover.js` runs daily via GitHub Actions. Don't manually manage `data/current-issue.json` unless necessary.

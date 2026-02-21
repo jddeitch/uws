@@ -4,7 +4,7 @@
  * Single source of truth for all styles.
  * Tailwind handles utilities; this file handles:
  *   1. Base typography (font-family, Google Fonts import)
- *   2. Component styles (carousel, subscription cards, nav behavior)
+ *   2. Homepage mobile nav auto-hide behavior
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
@@ -15,159 +15,22 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-/* ---- Homepage: mobile nav hide ---- */
-
-@media (max-width: 767px) {
-    #site-nav nav {
-        transform: translateY(-100%);
-        transition: transform 0.3s ease-in-out;
-    }
-}
-
-/* ---- Subscribe page: card hover ---- */
-
-.subscription-card {
-    transition: all 0.3s ease;
-}
-
-.subscription-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(204, 0, 0, 0.3);
-}
-
-/* ---- Archive page: carousel ---- */
-
-.carousel-container {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 30px 20px;
-}
-
-.carousel-container::-webkit-scrollbar {
-    display: none;
-}
-
-.carousel-track {
-    white-space: nowrap;
-}
-
-.carousel-slide {
-    display: inline-block;
-    width: 250px;
-    margin-right: 20px;
-    vertical-align: top;
-    white-space: normal;
-}
-
-@media (max-width: 640px) {
-    .carousel-slide {
-        width: 200px;
-        margin-right: 16px;
-    }
-    .carousel-container {
-        padding: 20px 16px;
-    }
-}
-
-.cover-card {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.cover-card:hover {
-    transform: scale(1.05);
-}
-
-.cover-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-    border-radius: 8px;
-}
-
-.cover-card:hover img {
-    box-shadow: 0 8px 30px rgba(204, 0, 0, 0.8);
-}
-
-.cover-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-    padding: 16px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.cover-card:hover .cover-overlay {
-    opacity: 1;
-}
-
-.issue-label {
+body h1 {
+    font-size: 2.25rem;    /* text-4xl */
+    font-weight: 900;      /* font-black */
     color: white;
-    font-weight: 700;
-    font-size: 14px;
-    text-align: center;
+    text-transform: uppercase;
 }
 
-/* Carousel nav arrows — desktop only */
-
-.carousel-nav {
-    display: none;
-}
-
-@media (min-width: 768px) {
-    .carousel-nav {
-        display: flex;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        border: none;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        cursor: pointer;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        z-index: 10;
-    }
-
-    .carousel-nav:hover {
-        background: #C00;
-        transform: translateY(-50%) scale(1.1);
-    }
-
-    .carousel-nav.prev {
-        left: 16px;
-    }
-
-    .carousel-nav.next {
-        right: 16px;
+@media (min-width: 640px) {
+    body h1 {
+        font-size: 3rem;   /* text-5xl */
     }
 }
 
-/* Scroll indicator — mobile only */
+/* ---- Homepage only: nav hide (revealed on scroll past hero) ---- */
 
-.scroll-indicator {
-    text-align: center;
-    margin-top: 16px;
-    color: #666;
-    font-size: 14px;
-}
-
-@media (min-width: 768px) {
-    .scroll-indicator {
-        display: none;
-    }
+.homepage #site-nav nav {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
 }
