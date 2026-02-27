@@ -4,43 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UWS Forum — UI Mockup</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    'united-red': '#CC0000',
-                    'united-red-hover': '#AA0000',
-                    'united-gold': '#FFD700',
-                    'surface': '#0A0A0A',
-                },
-                letterSpacing: {
-                    'refined': '0.05em',
-                }
-            }
-        }
-    };
-    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #000; color: #fff; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+        a { color: inherit; text-decoration: none; }
+
+        /* Colors */
+        :root {
+            --red: #CC0000;
+            --red-hover: #AA0000;
+            --gold: #FFD700;
+            --surface: #0A0A0A;
+            --gray-900: #111827;
+            --border: rgba(255,255,255,0.1);
+            --border-hover: rgba(255,255,255,0.2);
+            --text-muted: #6b7280;
+            --text-dim: #9ca3af;
+            --text-light: #d1d5db;
+        }
+
+        /* Views */
         .view { display: none; }
         .view.active { display: block; }
-        .mockup-switcher { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; }
+
+        /* Mockup Switcher */
+        .mockup-switcher { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; background: var(--gray-900); border-top: 1px solid var(--border); padding: 12px 16px; }
+        .switcher-inner { max-width: 512px; margin: 0 auto; display: flex; gap: 8px; }
+        .switcher-btn { flex: 1; padding: 8px; border-radius: 8px; font-size: 13px; font-weight: 700; border: none; cursor: pointer; transition: all 0.2s; }
+        .switcher-btn.active { background: var(--red); color: #fff; }
+        .switcher-btn:not(.active) { background: rgba(255,255,255,0.1); color: #9ca3af; }
+        .switcher-btn:not(.active):hover { color: #fff; }
+
+        /* Header */
+        .header { background: var(--gray-900); border-bottom: 1px solid var(--border); position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+        .header-inner { max-width: 672px; margin: 0 auto; padding: 0 16px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .header-title { font-size: 18px; font-weight: 900; letter-spacing: 0.05em; text-transform: uppercase; }
+        .header-icons { display: flex; align-items: center; gap: 16px; }
+        .icon-btn { background: none; border: none; color: #9ca3af; cursor: pointer; transition: color 0.2s; position: relative; }
+        .icon-btn:hover { color: #fff; }
+        .icon-btn svg { width: 20px; height: 20px; }
+        .notification-dot { position: absolute; top: -4px; right: -4px; width: 8px; height: 8px; background: var(--red); border-radius: 50%; }
+        .avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+        .avatar-lg { width: 36px; height: 36px; font-size: 11px; }
+        .avatar-md { width: 32px; height: 32px; }
+        .avatar-msg { width: 40px; height: 40px; }
+        .avatar-gray { background: #374151; }
+
+        /* Content area */
+        .content { max-width: 672px; margin: 0 auto; padding: 64px 16px 0; }
+
+        /* Filter pills */
+        .filters { display: flex; gap: 8px; padding: 12px 0; }
+        .pill { flex-shrink: 0; padding: 6px 20px; border-radius: 9999px; font-size: 13px; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s; }
+        .pill-active { background: var(--red); color: #fff; }
+        .pill-inactive { background: rgba(255,255,255,0.1); color: #9ca3af; }
+        .pill-inactive:hover { color: #fff; }
+
+        /* Online indicator */
+        .online { display: flex; align-items: center; gap: 8px; padding: 8px 0; font-size: 13px; color: var(--text-muted); }
+        .online-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; }
+
+        /* Card */
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; transition: border-color 0.2s; }
+        .card:hover { border-color: var(--border-hover); }
+        .card-row { display: flex; align-items: flex-start; gap: 12px; }
+        .card-body { flex: 1; min-width: 0; }
+        .card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .card-meta span { font-size: 12px; }
+        .pin-icon { width: 14px; height: 14px; color: var(--red); flex-shrink: 0; }
+        .tag-pinned { font-size: 11px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.05em; }
+        .tag-cat { font-size: 12px; color: #4b5563; }
+        .card-title { color: #fff; font-weight: 700; font-size: 15px; line-height: 1.4; margin-bottom: 6px; }
+        .card-footer { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--text-muted); }
+        .card-footer .author { color: var(--text-dim); font-weight: 500; }
+        .reply-count { flex-shrink: 0; border-radius: 8px; padding: 4px 10px; font-size: 12px; font-weight: 700; }
+        .reply-count-hot { background: rgba(204,0,0,0.1); color: var(--red); }
+        .reply-count-normal { background: rgba(255,255,255,0.05); color: #9ca3af; }
+
+        /* FAB */
+        .fab { position: fixed; bottom: 96px; right: 16px; width: 56px; height: 56px; background: var(--red); border-radius: 50%; border: none; box-shadow: 0 10px 15px rgba(204,0,0,0.3); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; }
+        .fab:hover { background: var(--red-hover); }
+        .fab svg { width: 24px; height: 24px; color: #fff; }
+
+        /* Thread */
+        .back-btn { background: none; border: none; color: #9ca3af; cursor: pointer; transition: color 0.2s; }
+        .back-btn:hover { color: #fff; }
+        .back-btn svg { width: 20px; height: 20px; }
+        .thread-header-inner { max-width: 672px; margin: 0 auto; padding: 0 16px; height: 56px; display: flex; align-items: center; gap: 12px; }
+        .thread-title { font-size: 13px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .thread-sub { font-size: 12px; color: var(--text-muted); }
+        .thread-title-wrap { min-width: 0; flex: 1; }
+
+        /* Post */
+        .post { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+        .post-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .post-author { color: #fff; font-weight: 600; font-size: 13px; }
+        .post-time { font-size: 12px; color: var(--text-muted); margin-left: 8px; }
+        .post-body { color: var(--text-light); font-size: 14px; line-height: 1.7; }
+        .post-body p { margin-bottom: 12px; }
+        .post-body p:last-child { margin-bottom: 0; }
+
+        /* Quote */
+        .quote { border-left: 2px solid rgba(204,0,0,0.4); background: rgba(255,255,255,0.05); border-radius: 0 8px 8px 0; padding: 8px 12px; margin-bottom: 12px; font-size: 12px; color: #9ca3af; }
+        .quote .quote-author { font-weight: 600; color: var(--text-light); }
+
+        /* Reply bar */
+        .reply-bar { position: fixed; bottom: 80px; left: 0; right: 0; background: var(--gray-900); border-top: 1px solid var(--border); padding: 12px 16px; z-index: 40; }
+        .reply-bar-inner { max-width: 672px; margin: 0 auto; display: flex; gap: 12px; align-items: flex-end; }
+        .reply-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 12px; padding: 10px 16px; font-size: 13px; color: var(--text-muted); min-height: 40px; }
+        .reply-post-btn { background: var(--red); border: none; border-radius: 12px; padding: 10px 16px; font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.05em; cursor: pointer; transition: background 0.2s; flex-shrink: 0; }
+        .reply-post-btn:hover { background: var(--red-hover); }
+
+        /* Messages */
+        .msg-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 8px; cursor: pointer; transition: border-color 0.2s; }
+        .msg-item:hover { border-color: var(--border-hover); }
+        .msg-row { display: flex; align-items: center; gap: 12px; }
+        .msg-body { flex: 1; min-width: 0; }
+        .msg-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px; }
+        .msg-name { color: #fff; font-weight: 600; font-size: 13px; }
+        .msg-time { font-size: 12px; color: var(--text-muted); }
+        .msg-preview { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .msg-preview-unread { color: var(--text-light); }
+        .msg-preview-read { color: var(--text-muted); }
+        .unread-dot { width: 10px; height: 10px; background: var(--red); border-radius: 50%; flex-shrink: 0; }
+
+        /* Compose */
+        .compose-header-inner { max-width: 672px; margin: 0 auto; padding: 0 16px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+        .cancel-btn { background: none; border: none; color: #9ca3af; cursor: pointer; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+        .cancel-btn:hover { color: #fff; }
+        .compose-title-label { font-size: 13px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.05em; }
+        .post-btn-sm { background: var(--red); border: none; border-radius: 8px; padding: 6px 16px; font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.05em; cursor: pointer; transition: background 0.2s; }
+        .post-btn-sm:hover { background: var(--red-hover); }
+        .compose-form { padding: 16px 0; }
+        .compose-form > * + * { margin-top: 16px; }
+        .compose-input { width: 100%; background: transparent; color: #fff; font-size: 20px; font-weight: 700; border: none; border-bottom: 1px solid var(--border); padding-bottom: 12px; outline: none; font-family: inherit; }
+        .compose-input::placeholder { color: #4b5563; }
+        .compose-input:focus { border-bottom-color: var(--red); }
+        .compose-body-placeholder { width: 100%; color: #9ca3af; font-size: 14px; line-height: 1.7; min-height: 200px; padding-top: 8px; }
+        .formatting-bar { display: flex; gap: 16px; padding-top: 8px; border-top: 1px solid var(--border); }
+        .fmt-btn { background: none; border: none; color: #4b5563; cursor: pointer; transition: color 0.2s; font-size: 13px; }
+        .fmt-btn:hover { color: #9ca3af; }
+        .fmt-btn svg { width: 16px; height: 16px; }
+
+        /* Dot separator */
+        .dot { color: #4b5563; }
     </style>
 </head>
-<body class="bg-black text-white antialiased pb-20">
+<body>
 
     <!-- ============================================ -->
     <!-- MOCKUP SWITCHER (not part of the design)     -->
     <!-- ============================================ -->
-    <div class="mockup-switcher bg-gray-900 border-t border-white/10 px-4 py-3">
-        <div class="max-w-lg mx-auto flex gap-2">
-            <button onclick="showView('feed')" id="btn-feed" class="flex-1 py-2 rounded-lg text-sm font-bold bg-united-red text-white transition">Feed</button>
-            <button onclick="showView('thread')" id="btn-thread" class="flex-1 py-2 rounded-lg text-sm font-bold bg-white/10 text-gray-400 hover:text-white transition">Thread</button>
-            <button onclick="showView('messages')" id="btn-messages" class="flex-1 py-2 rounded-lg text-sm font-bold bg-white/10 text-gray-400 hover:text-white transition">Messages</button>
-            <button onclick="showView('compose')" id="btn-compose" class="flex-1 py-2 rounded-lg text-sm font-bold bg-white/10 text-gray-400 hover:text-white transition">New Topic</button>
+    <div class="mockup-switcher">
+        <div class="switcher-inner">
+            <button onclick="showView('feed')" id="btn-feed" class="switcher-btn active">Feed</button>
+            <button onclick="showView('thread')" id="btn-thread" class="switcher-btn">Thread</button>
+            <button onclick="showView('messages')" id="btn-messages" class="switcher-btn">Messages</button>
+            <button onclick="showView('compose')" id="btn-compose" class="switcher-btn">New Topic</button>
         </div>
     </div>
 
@@ -50,206 +172,188 @@
     <div id="view-feed" class="view active">
 
         <!-- Top Bar -->
-        <header class="bg-gray-900 border-b border-white/10 fixed top-0 left-0 right-0 z-50">
-            <div class="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <span class="text-lg font-black tracking-refined uppercase text-white">UWS Forum</span>
+        <header class="header">
+            <div class="header-inner">
+                <div class="header-left">
+                    <span class="header-title">UWS Forum</span>
                 </div>
-                <div class="flex items-center gap-4">
-                    <!-- Search -->
-                    <button class="text-gray-400 hover:text-white transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="header-icons">
+                    <button class="icon-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
                     </button>
-                    <!-- Messages -->
-                    <button onclick="showView('messages')" class="text-gray-400 hover:text-white transition relative">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button onclick="showView('messages')" class="icon-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
-                        <span class="absolute -top-1 -right-1 w-2 h-2 bg-united-red rounded-full"></span>
+                        <span class="notification-dot"></span>
                     </button>
-                    <!-- User -->
-                    <div class="w-7 h-7 rounded-full bg-united-red flex items-center justify-center text-xs font-bold">JD</div>
+                    <div class="avatar">JD</div>
                 </div>
             </div>
         </header>
 
-        <div class="max-w-2xl mx-auto px-4 pt-16">
+        <div class="content">
 
             <!-- Category Filters -->
-            <div class="flex gap-2 py-3">
-                <button class="flex-shrink-0 px-5 py-1.5 rounded-full text-sm font-semibold bg-united-red text-white">All</button>
-                <button class="flex-shrink-0 px-5 py-1.5 rounded-full text-sm font-semibold bg-white/10 text-gray-400 hover:text-white transition">Groundside</button>
-                <button class="flex-shrink-0 px-5 py-1.5 rounded-full text-sm font-semibold bg-white/10 text-gray-400 hover:text-white transition">Reds Away</button>
+            <div class="filters">
+                <button class="pill pill-active">All</button>
+                <button class="pill pill-inactive">Groundside</button>
+                <button class="pill pill-inactive">Reds Away</button>
             </div>
 
             <!-- Online Indicator -->
-            <div class="flex items-center gap-2 py-2 text-sm text-gray-500">
-                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+            <div class="online">
+                <span class="online-dot"></span>
                 <span>29 online now</span>
             </div>
 
             <!-- Pinned Topic -->
-            <div onclick="showView('thread')" class="cursor-pointer bg-surface border border-white/10 rounded-xl p-4 mb-3 hover:border-white/20 transition">
-                <div class="flex items-start gap-3">
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2 mb-1">
-                            <svg class="w-3.5 h-3.5 text-united-red flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <div onclick="showView('thread')" class="card">
+                <div class="card-row">
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <svg class="pin-icon" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M5.5 16a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 16h-8z"/>
                             </svg>
-                            <span class="text-xs font-semibold text-united-red uppercase tracking-wider">Pinned</span>
-                            <span class="text-xs text-gray-600">·</span>
-                            <span class="text-xs text-gray-600">Groundside</span>
+                            <span class="tag-pinned">Pinned</span>
+                            <span class="dot">·</span>
+                            <span class="tag-cat">Groundside</span>
                         </div>
-                        <h3 class="text-white font-bold text-base leading-snug mb-1.5">Man Utd v Barcelona — Match Thread</h3>
-                        <div class="flex items-center gap-3 text-xs text-gray-500">
-                            <span class="text-gray-400 font-medium">AndyMitten</span>
+                        <h3 class="card-title">Man Utd v Barcelona — Match Thread</h3>
+                        <div class="card-footer">
+                            <span class="author">AndyMitten</span>
                             <span>·</span>
                             <span>247 replies</span>
                             <span>·</span>
                             <span>2m ago</span>
                         </div>
                     </div>
-                    <!-- Reply count pill -->
-                    <div class="flex-shrink-0 bg-united-red/10 text-united-red rounded-lg px-2.5 py-1 text-xs font-bold">
-                        247
-                    </div>
+                    <div class="reply-count reply-count-hot">247</div>
                 </div>
             </div>
 
             <!-- Regular Topics -->
-            <div onclick="showView('thread')" class="cursor-pointer bg-surface border border-white/10 rounded-xl p-4 mb-3 hover:border-white/20 transition">
-                <div class="flex items-start gap-3">
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-xs text-gray-600">Groundside</span>
+            <div onclick="showView('thread')" class="card">
+                <div class="card-row">
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="tag-cat">Groundside</span>
                         </div>
-                        <h3 class="text-white font-bold text-base leading-snug mb-1.5">Zubimendi rumours — anyone buying this?</h3>
-                        <div class="flex items-center gap-3 text-xs text-gray-500">
-                            <span class="text-gray-400 font-medium">StretfordEnd_78</span>
+                        <h3 class="card-title">Zubimendi rumours — anyone buying this?</h3>
+                        <div class="card-footer">
+                            <span class="author">StretfordEnd_78</span>
                             <span>·</span>
                             <span>89 replies</span>
                             <span>·</span>
                             <span>5m ago</span>
                         </div>
                     </div>
-                    <div class="flex-shrink-0 bg-white/5 text-gray-400 rounded-lg px-2.5 py-1 text-xs font-bold">
-                        89
-                    </div>
+                    <div class="reply-count reply-count-normal">89</div>
                 </div>
             </div>
 
-            <div class="cursor-pointer bg-surface border border-white/10 rounded-xl p-4 mb-3 hover:border-white/20 transition">
-                <div class="flex items-start gap-3">
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-xs text-gray-600">Groundside</span>
+            <div class="card">
+                <div class="card-row">
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="tag-cat">Groundside</span>
                         </div>
-                        <h3 class="text-white font-bold text-base leading-snug mb-1.5">Season ticket renewals — anyone NOT renewing?</h3>
-                        <div class="flex items-center gap-3 text-xs text-gray-500">
-                            <span class="text-gray-400 font-medium">K_Stand_Lifer</span>
+                        <h3 class="card-title">Season ticket renewals — anyone NOT renewing?</h3>
+                        <div class="card-footer">
+                            <span class="author">K_Stand_Lifer</span>
                             <span>·</span>
                             <span>156 replies</span>
                             <span>·</span>
                             <span>12m ago</span>
                         </div>
                     </div>
-                    <div class="flex-shrink-0 bg-white/5 text-gray-400 rounded-lg px-2.5 py-1 text-xs font-bold">
-                        156
-                    </div>
+                    <div class="reply-count reply-count-normal">156</div>
                 </div>
             </div>
 
-            <div class="cursor-pointer bg-surface border border-white/10 rounded-xl p-4 mb-3 hover:border-white/20 transition">
-                <div class="flex items-start gap-3">
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-xs text-gray-600">Reds Away</span>
+            <div class="card">
+                <div class="card-row">
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="tag-cat">Reds Away</span>
                         </div>
-                        <h3 class="text-white font-bold text-base leading-snug mb-1.5">Barcelona away — who's going and travel tips</h3>
-                        <div class="flex items-center gap-3 text-xs text-gray-500">
-                            <span class="text-gray-400 font-medium">TravellingRed</span>
+                        <h3 class="card-title">Barcelona away — who's going and travel tips</h3>
+                        <div class="card-footer">
+                            <span class="author">TravellingRed</span>
                             <span>·</span>
                             <span>67 replies</span>
                             <span>·</span>
                             <span>34m ago</span>
                         </div>
                     </div>
-                    <div class="flex-shrink-0 bg-white/5 text-gray-400 rounded-lg px-2.5 py-1 text-xs font-bold">
-                        67
-                    </div>
+                    <div class="reply-count reply-count-normal">67</div>
                 </div>
             </div>
 
-            <div class="cursor-pointer bg-surface border border-white/10 rounded-xl p-4 mb-3 hover:border-white/20 transition">
-                <div class="flex items-start gap-3">
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-xs text-gray-600">Groundside</span>
+            <div class="card">
+                <div class="card-row">
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="tag-cat">Groundside</span>
                         </div>
-                        <h3 class="text-white font-bold text-base leading-snug mb-1.5">Amorim's 3-4-3 — is it actually working?</h3>
-                        <div class="flex items-center gap-3 text-xs text-gray-500">
-                            <span class="text-gray-400 font-medium">TacticalRed</span>
+                        <h3 class="card-title">Amorim's 3-4-3 — is it actually working?</h3>
+                        <div class="card-footer">
+                            <span class="author">TacticalRed</span>
                             <span>·</span>
                             <span>203 replies</span>
                             <span>·</span>
                             <span>1h ago</span>
                         </div>
                     </div>
-                    <div class="flex-shrink-0 bg-white/5 text-gray-400 rounded-lg px-2.5 py-1 text-xs font-bold">
-                        203
-                    </div>
+                    <div class="reply-count reply-count-normal">203</div>
                 </div>
             </div>
 
-            <div class="cursor-pointer bg-surface border border-white/10 rounded-xl p-4 mb-3 hover:border-white/20 transition">
-                <div class="flex items-start gap-3">
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-xs text-gray-600">Groundside</span>
+            <div class="card">
+                <div class="card-row">
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="tag-cat">Groundside</span>
                         </div>
-                        <h3 class="text-white font-bold text-base leading-snug mb-1.5">Best pubs near Old Trafford — updated list</h3>
-                        <div class="flex items-center gap-3 text-xs text-gray-500">
-                            <span class="text-gray-400 font-medium">Salford_Red</span>
+                        <h3 class="card-title">Best pubs near Old Trafford — updated list</h3>
+                        <div class="card-footer">
+                            <span class="author">Salford_Red</span>
                             <span>·</span>
                             <span>44 replies</span>
                             <span>·</span>
                             <span>2h ago</span>
                         </div>
                     </div>
-                    <div class="flex-shrink-0 bg-white/5 text-gray-400 rounded-lg px-2.5 py-1 text-xs font-bold">
-                        44
-                    </div>
+                    <div class="reply-count reply-count-normal">44</div>
                 </div>
             </div>
 
-            <div class="cursor-pointer bg-surface border border-white/10 rounded-xl p-4 mb-3 hover:border-white/20 transition">
-                <div class="flex items-start gap-3">
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="text-xs text-gray-600">Reds Away</span>
+            <div class="card">
+                <div class="card-row">
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="tag-cat">Reds Away</span>
                         </div>
-                        <h3 class="text-white font-bold text-base leading-snug mb-1.5">Everton away — coach or train?</h3>
-                        <div class="flex items-center gap-3 text-xs text-gray-500">
-                            <span class="text-gray-400 font-medium">RedReview</span>
+                        <h3 class="card-title">Everton away — coach or train?</h3>
+                        <div class="card-footer">
+                            <span class="author">RedReview</span>
                             <span>·</span>
                             <span>91 replies</span>
                             <span>·</span>
                             <span>3h ago</span>
                         </div>
                     </div>
-                    <div class="flex-shrink-0 bg-white/5 text-gray-400 rounded-lg px-2.5 py-1 text-xs font-bold">
-                        91
-                    </div>
+                    <div class="reply-count reply-count-normal">91</div>
                 </div>
             </div>
 
         </div>
 
         <!-- New Topic FAB -->
-        <button onclick="showView('compose')" class="fixed bottom-24 right-4 sm:right-auto sm:left-1/2 sm:translate-x-[280px] w-14 h-14 bg-united-red hover:bg-united-red-hover rounded-full shadow-lg shadow-united-red/30 flex items-center justify-center transition">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button onclick="showView('compose')" class="fab">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
             </svg>
         </button>
@@ -261,33 +365,32 @@
     <!-- ============================================ -->
     <div id="view-thread" class="view">
 
-        <!-- Thread Header -->
-        <header class="bg-gray-900 border-b border-white/10 fixed top-0 left-0 right-0 z-50">
-            <div class="max-w-2xl mx-auto px-4 h-14 flex items-center gap-3">
-                <button onclick="showView('feed')" class="text-gray-400 hover:text-white transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <header class="header">
+            <div class="thread-header-inner">
+                <button onclick="showView('feed')" class="back-btn">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
                 </button>
-                <div class="min-w-0 flex-1">
-                    <h1 class="text-sm font-bold text-white truncate">Man Utd v Barcelona — Match Thread</h1>
-                    <span class="text-xs text-gray-500">Groundside · 247 replies</span>
+                <div class="thread-title-wrap">
+                    <div class="thread-title">Man Utd v Barcelona — Match Thread</div>
+                    <span class="thread-sub">Groundside · 247 replies</span>
                 </div>
             </div>
         </header>
 
-        <div class="max-w-2xl mx-auto px-4 pt-16 pb-24">
+        <div class="content" style="padding-bottom: 96px;">
 
             <!-- Original Post -->
-            <div class="bg-surface border border-white/10 rounded-xl p-4 mb-4">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-9 h-9 rounded-full bg-united-red flex items-center justify-center text-xs font-bold flex-shrink-0">AM</div>
+            <div class="post">
+                <div class="post-header">
+                    <div class="avatar avatar-lg">AM</div>
                     <div>
-                        <span class="text-white font-semibold text-sm">AndyMitten</span>
-                        <span class="text-xs text-gray-500 ml-2">3h ago</span>
+                        <span class="post-author">AndyMitten</span>
+                        <span class="post-time">3h ago</span>
                     </div>
                 </div>
-                <div class="text-gray-300 text-sm leading-relaxed space-y-3">
+                <div class="post-body">
                     <p>Champions League night at Old Trafford. Amorim going with the 3-4-3 again. Thoughts on the lineup?</p>
                     <p>Onana; Mazraoui, De Ligt, Martinez; Dalot, Ugarte, Fernandes, Diallo; Garnacho, Hojlund, Rashford.</p>
                     <p>Surprised to see Rashford starting wide left. Thought Mount might get the nod after the weekend. Ugarte–Fernandes pivot is the right call though.</p>
@@ -295,80 +398,71 @@
             </div>
 
             <!-- Replies -->
-            <div class="space-y-3">
-
-                <div class="bg-surface border border-white/10 rounded-xl p-4">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold flex-shrink-0">SE</div>
-                        <div>
-                            <span class="text-white font-semibold text-sm">StretfordEnd_78</span>
-                            <span class="text-xs text-gray-500 ml-2">3h ago</span>
-                        </div>
+            <div class="post">
+                <div class="post-header">
+                    <div class="avatar avatar-md avatar-gray">SE</div>
+                    <div>
+                        <span class="post-author">StretfordEnd_78</span>
+                        <span class="post-time">3h ago</span>
                     </div>
-                    <p class="text-gray-300 text-sm leading-relaxed">Rashford has to perform tonight or that's it for me. How many big European nights has he gone missing in?</p>
                 </div>
+                <p class="post-body">Rashford has to perform tonight or that's it for me. How many big European nights has he gone missing in?</p>
+            </div>
 
-                <div class="bg-surface border border-white/10 rounded-xl p-4">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold flex-shrink-0">KS</div>
-                        <div>
-                            <span class="text-white font-semibold text-sm">K_Stand_Lifer</span>
-                            <span class="text-xs text-gray-500 ml-2">2h ago</span>
-                        </div>
+            <div class="post">
+                <div class="post-header">
+                    <div class="avatar avatar-md avatar-gray">KS</div>
+                    <div>
+                        <span class="post-author">K_Stand_Lifer</span>
+                        <span class="post-time">2h ago</span>
                     </div>
-                    <!-- Quoted post -->
-                    <div class="border-l-2 border-united-red/40 bg-white/5 rounded-r-lg px-3 py-2 mb-3 text-xs text-gray-400">
-                        <span class="font-semibold text-gray-300">StretfordEnd_78:</span> Rashford has to perform tonight or that's it for me...
-                    </div>
-                    <p class="text-gray-300 text-sm leading-relaxed">Give him a chance. He scored against City in that same formation. The 3-4-3 actually suits him better — less defensive responsibility, more license to drift inside.</p>
                 </div>
-
-                <div class="bg-surface border border-white/10 rounded-xl p-4">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold flex-shrink-0">TR</div>
-                        <div>
-                            <span class="text-white font-semibold text-sm">TacticalRed</span>
-                            <span class="text-xs text-gray-500 ml-2">2h ago</span>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 text-sm leading-relaxed">The real question is whether Ugarte can handle Pedri. If he gets turned inside out the way Casemiro did against Xavi's Barça, it'll be a long night. Think the key is Dalot pushing up to pin their left back and give Diallo 1v1s.</p>
+                <div class="quote">
+                    <span class="quote-author">StretfordEnd_78:</span> Rashford has to perform tonight or that's it for me...
                 </div>
+                <p class="post-body">Give him a chance. He scored against City in that same formation. The 3-4-3 actually suits him better — less defensive responsibility, more license to drift inside.</p>
+            </div>
 
-                <div class="bg-surface border border-white/10 rounded-xl p-4">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold flex-shrink-0">SR</div>
-                        <div>
-                            <span class="text-white font-semibold text-sm">Salford_Red</span>
-                            <span class="text-xs text-gray-500 ml-2">1h ago</span>
-                        </div>
+            <div class="post">
+                <div class="post-header">
+                    <div class="avatar avatar-md avatar-gray">TR</div>
+                    <div>
+                        <span class="post-author">TacticalRed</span>
+                        <span class="post-time">2h ago</span>
                     </div>
-                    <p class="text-gray-300 text-sm leading-relaxed">In the ground now. Atmosphere is already building. Stretford End in full voice. COME ON.</p>
                 </div>
+                <p class="post-body">The real question is whether Ugarte can handle Pedri. If he gets turned inside out the way Casemiro did against Xavi's Barça, it'll be a long night. Think the key is Dalot pushing up to pin their left back and give Diallo 1v1s.</p>
+            </div>
 
-                <div class="bg-surface border border-white/10 rounded-xl p-4">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-9 h-9 rounded-full bg-united-red flex items-center justify-center text-xs font-bold flex-shrink-0">AM</div>
-                        <div>
-                            <span class="text-white font-semibold text-sm">AndyMitten</span>
-                            <span class="text-xs text-gray-500 ml-2">45m ago</span>
-                        </div>
+            <div class="post">
+                <div class="post-header">
+                    <div class="avatar avatar-md avatar-gray">SR</div>
+                    <div>
+                        <span class="post-author">Salford_Red</span>
+                        <span class="post-time">1h ago</span>
                     </div>
-                    <p class="text-gray-300 text-sm leading-relaxed">GOAL! Garnacho 1-0. Unbelievable counter-attack. Diallo beat two men down the right, pulled it back and Garnacho smashed it in first time. The roof nearly came off the Stretford End.</p>
                 </div>
+                <p class="post-body">In the ground now. Atmosphere is already building. Stretford End in full voice. COME ON.</p>
+            </div>
 
+            <div class="post">
+                <div class="post-header">
+                    <div class="avatar avatar-lg">AM</div>
+                    <div>
+                        <span class="post-author">AndyMitten</span>
+                        <span class="post-time">45m ago</span>
+                    </div>
+                </div>
+                <p class="post-body">GOAL! Garnacho 1-0. Unbelievable counter-attack. Diallo beat two men down the right, pulled it back and Garnacho smashed it in first time. The roof nearly came off the Stretford End.</p>
             </div>
 
         </div>
 
-        <!-- Reply Bar (fixed at bottom) -->
-        <div class="fixed bottom-20 left-0 right-0 bg-gray-900 border-t border-white/10 px-4 py-3 z-40">
-            <div class="max-w-2xl mx-auto flex gap-3 items-end">
-                <div class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-gray-500 min-h-[40px]">
-                    Write a reply...
-                </div>
-                <button class="bg-united-red hover:bg-united-red-hover rounded-xl px-4 py-2.5 text-sm font-bold text-white tracking-refined transition flex-shrink-0">
-                    Post
-                </button>
+        <!-- Reply Bar -->
+        <div class="reply-bar">
+            <div class="reply-bar-inner">
+                <div class="reply-input">Write a reply...</div>
+                <button class="reply-post-btn">Post</button>
             </div>
         </div>
 
@@ -379,74 +473,72 @@
     <!-- ============================================ -->
     <div id="view-messages" class="view">
 
-        <!-- Messages Header -->
-        <header class="bg-gray-900 border-b border-white/10 fixed top-0 left-0 right-0 z-50">
-            <div class="max-w-2xl mx-auto px-4 h-14 flex items-center gap-3">
-                <button onclick="showView('feed')" class="text-gray-400 hover:text-white transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <header class="header">
+            <div class="thread-header-inner">
+                <button onclick="showView('feed')" class="back-btn">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
                 </button>
-                <span class="text-sm font-bold text-white uppercase tracking-refined">Messages</span>
+                <span style="font-size:13px; font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:0.05em;">Messages</span>
             </div>
         </header>
 
-        <div class="max-w-2xl mx-auto px-4 pt-16">
+        <div class="content">
 
-            <!-- Message threads (inbox) -->
-            <div class="space-y-2 py-3">
+            <div style="padding: 12px 0;">
 
                 <!-- Unread message -->
-                <div class="bg-surface border border-white/10 rounded-xl p-4 hover:border-white/20 transition cursor-pointer">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold flex-shrink-0">TR</div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between mb-0.5">
-                                <span class="text-white font-semibold text-sm">TravellingRed</span>
-                                <span class="text-xs text-gray-500">15m ago</span>
+                <div class="msg-item">
+                    <div class="msg-row">
+                        <div class="avatar avatar-msg avatar-gray">TR</div>
+                        <div class="msg-body">
+                            <div class="msg-top">
+                                <span class="msg-name">TravellingRed</span>
+                                <span class="msg-time">15m ago</span>
                             </div>
-                            <p class="text-gray-300 text-sm truncate">Have you sorted flights for Barcelona yet? I've found some decent ones from...</p>
+                            <p class="msg-preview msg-preview-unread">Have you sorted flights for Barcelona yet? I've found some decent ones from...</p>
                         </div>
-                        <span class="w-2.5 h-2.5 bg-united-red rounded-full flex-shrink-0"></span>
+                        <span class="unread-dot"></span>
                     </div>
                 </div>
 
-                <!-- Read message -->
-                <div class="bg-surface border border-white/10 rounded-xl p-4 hover:border-white/20 transition cursor-pointer">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold flex-shrink-0">KS</div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between mb-0.5">
-                                <span class="text-white font-semibold text-sm">K_Stand_Lifer</span>
-                                <span class="text-xs text-gray-500">2h ago</span>
+                <!-- Read messages -->
+                <div class="msg-item">
+                    <div class="msg-row">
+                        <div class="avatar avatar-msg avatar-gray">KS</div>
+                        <div class="msg-body">
+                            <div class="msg-top">
+                                <span class="msg-name">K_Stand_Lifer</span>
+                                <span class="msg-time">2h ago</span>
                             </div>
-                            <p class="text-gray-500 text-sm truncate">Cheers mate, I'll grab those tickets off you Saturday. Same spot as usual?</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-surface border border-white/10 rounded-xl p-4 hover:border-white/20 transition cursor-pointer">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-united-red flex items-center justify-center text-xs font-bold flex-shrink-0">AM</div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between mb-0.5">
-                                <span class="text-white font-semibold text-sm">AndyMitten</span>
-                                <span class="text-xs text-gray-500">Yesterday</span>
-                            </div>
-                            <p class="text-gray-500 text-sm truncate">Good shout on that piece about the Stretford End atmosphere. Want to write something for next issue?</p>
+                            <p class="msg-preview msg-preview-read">Cheers mate, I'll grab those tickets off you Saturday. Same spot as usual?</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-surface border border-white/10 rounded-xl p-4 hover:border-white/20 transition cursor-pointer">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-xs font-bold flex-shrink-0">SE</div>
-                        <div class="flex-1 min-w-0">
-                            <div class="flex items-center justify-between mb-0.5">
-                                <span class="text-white font-semibold text-sm">StretfordEnd_78</span>
-                                <span class="text-xs text-gray-500">3 days ago</span>
+                <div class="msg-item">
+                    <div class="msg-row">
+                        <div class="avatar avatar-msg">AM</div>
+                        <div class="msg-body">
+                            <div class="msg-top">
+                                <span class="msg-name">AndyMitten</span>
+                                <span class="msg-time">Yesterday</span>
                             </div>
-                            <p class="text-gray-500 text-sm truncate">Thanks for the info on the away allocation. Managed to get sorted in the end.</p>
+                            <p class="msg-preview msg-preview-read">Good shout on that piece about the Stretford End atmosphere. Want to write something for next issue?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="msg-item">
+                    <div class="msg-row">
+                        <div class="avatar avatar-msg avatar-gray">SE</div>
+                        <div class="msg-body">
+                            <div class="msg-top">
+                                <span class="msg-name">StretfordEnd_78</span>
+                                <span class="msg-time">3 days ago</span>
+                            </div>
+                            <p class="msg-preview msg-preview-read">Thanks for the info on the away allocation. Managed to get sorted in the end.</p>
                         </div>
                     </div>
                 </div>
@@ -456,8 +548,8 @@
         </div>
 
         <!-- New Message Button -->
-        <button class="fixed bottom-24 right-4 sm:right-auto sm:left-1/2 sm:translate-x-[280px] w-14 h-14 bg-united-red hover:bg-united-red-hover rounded-full shadow-lg shadow-united-red/30 flex items-center justify-center transition">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button class="fab">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
             </svg>
         </button>
@@ -469,47 +561,44 @@
     <!-- ============================================ -->
     <div id="view-compose" class="view">
 
-        <!-- Compose Header -->
-        <header class="bg-gray-900 border-b border-white/10 fixed top-0 left-0 right-0 z-50">
-            <div class="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between">
-                <button onclick="showView('feed')" class="text-gray-400 hover:text-white transition text-sm font-medium">Cancel</button>
-                <span class="text-sm font-bold text-white uppercase tracking-refined">New Topic</span>
-                <button class="bg-united-red hover:bg-united-red-hover rounded-lg px-4 py-1.5 text-sm font-bold text-white tracking-refined transition">Post</button>
+        <header class="header">
+            <div class="compose-header-inner">
+                <button onclick="showView('feed')" class="cancel-btn">Cancel</button>
+                <span class="compose-title-label">New Topic</span>
+                <button class="post-btn-sm">Post</button>
             </div>
         </header>
 
-        <div class="max-w-2xl mx-auto px-4 pt-16">
+        <div class="content">
 
-            <div class="py-4 space-y-4">
+            <div class="compose-form">
                 <!-- Category Selector -->
-                <div class="flex gap-2">
-                    <button class="px-5 py-1.5 rounded-full text-sm font-semibold bg-united-red text-white">Groundside</button>
-                    <button class="px-5 py-1.5 rounded-full text-sm font-semibold bg-white/10 text-gray-400 hover:text-white transition">Reds Away</button>
+                <div class="filters">
+                    <button class="pill pill-active">Groundside</button>
+                    <button class="pill pill-inactive">Reds Away</button>
                 </div>
 
                 <!-- Title -->
                 <div>
-                    <input type="text" placeholder="Topic title" class="w-full bg-transparent text-white text-xl font-bold placeholder-gray-600 outline-none border-b border-white/10 pb-3 focus:border-united-red transition">
+                    <input type="text" placeholder="Topic title" class="compose-input">
                 </div>
 
                 <!-- Body -->
-                <div>
-                    <div class="w-full bg-transparent text-gray-400 text-sm leading-relaxed outline-none min-h-[200px] pt-2">
-                        Write your post...
-                    </div>
+                <div class="compose-body-placeholder">
+                    Write your post...
                 </div>
 
                 <!-- Formatting hints -->
-                <div class="flex gap-4 pt-2 border-t border-white/10">
-                    <button class="text-gray-600 hover:text-gray-400 transition text-sm font-bold">B</button>
-                    <button class="text-gray-600 hover:text-gray-400 transition text-sm italic">I</button>
-                    <button class="text-gray-600 hover:text-gray-400 transition">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="formatting-bar">
+                    <button class="fmt-btn" style="font-weight:700;">B</button>
+                    <button class="fmt-btn" style="font-style:italic;">I</button>
+                    <button class="fmt-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
                         </svg>
                     </button>
-                    <button class="text-gray-600 hover:text-gray-400 transition">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <button class="fmt-btn">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
                         </svg>
                     </button>
@@ -525,14 +614,10 @@
     <!-- ============================================ -->
     <script>
     function showView(name) {
-        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        document.querySelectorAll('.view').forEach(function(v) { v.classList.remove('active'); });
         document.getElementById('view-' + name).classList.add('active');
-        document.querySelectorAll('.mockup-switcher button').forEach(b => {
-            b.classList.remove('bg-united-red', 'text-white');
-            b.classList.add('bg-white/10', 'text-gray-400');
-        });
-        document.getElementById('btn-' + name).classList.remove('bg-white/10', 'text-gray-400');
-        document.getElementById('btn-' + name).classList.add('bg-united-red', 'text-white');
+        document.querySelectorAll('.switcher-btn').forEach(function(b) { b.classList.remove('active'); });
+        document.getElementById('btn-' + name).classList.add('active');
         window.scrollTo(0, 0);
     }
     </script>
