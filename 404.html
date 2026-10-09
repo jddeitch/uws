@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+
+    <!--
+        GitHub Pages serves this page at whatever address was requested
+        (e.g. /forum/thread.php), so relative links would resolve against the
+        wrong folder. Set the base to the site root first: "/uws/" on the
+        jddeitch.github.io project site, "/" on www.uwsonline.com.
+        Then send addresses from the old PHP site to their new pages.
+    -->
+    <script>
+    (function() {
+        var root = location.hostname.endsWith('github.io')
+            ? '/' + location.pathname.split('/')[1] + '/'
+            : '/';
+        var base = document.createElement('base');
+        base.href = root;
+        document.head.appendChild(base);
+
+        var path = location.pathname.slice(root.length - 1).toLowerCase();
+        var oldPages = {
+            '/index.php': '',
+            '/about-uws.php': 'about.html',
+            '/subscribe.php': 'subscribe.html',
+            '/thankyou.php': 'thankyou.html'
+        };
+        if (path === '/forum' || path.indexOf('/forum/') === 0) {
+            location.replace('https://forum.uwsonline.com/');
+        } else if (oldPages.hasOwnProperty(path)) {
+            location.replace(root + oldPages[path] + location.search + location.hash);
+        }
+    })();
+    </script>
+
+    <title>Page Not Found - United We Stand</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+    <!-- Tailwind CSS (Play CDN — config must be inline JS, not CSS) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'united-red': '#C00',
+                    'united-red-hover': '#A00',
+                    'united-gold': '#FFD700',
+                    'gradient-red-dark': '#1a0000',
+                    'surface': '#0A0A0A',
+                },
+                letterSpacing: {
+                    'refined': '0.05em',
+                }
+            }
+        }
+    };
+    </script>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="bg-black text-white antialiased">
+
+    <!-- Navigation -->
+    <div id="site-nav"></div>
+
+    <!-- Not Found -->
+    <section class="pt-28 pb-20 lg:pt-36 lg:pb-28 bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-united-red text-sm font-bold uppercase tracking-[0.25em] mb-6">Page not found</p>
+            <h1 class="text-5xl sm:text-7xl xl:text-8xl leading-[0.9] tracking-tight">Wide of<br>the post.</h1>
+            <p class="mt-8 text-lg sm:text-xl text-gray-300 leading-relaxed max-w-xl">
+                This page has moved or no longer exists. The old site's articles and video pages were retired when the site was rebuilt.
+            </p>
+            <ul class="mt-10 flex flex-col sm:flex-row gap-x-10 gap-y-4 text-lg font-semibold">
+                <li><a href="./" class="group text-white hover:text-united-red transition">Home <span class="inline-block ml-1 text-united-red transition group-hover:translate-x-1" aria-hidden="true">→</span></a></li>
+                <li><a href="./subscribe.html" class="group text-white hover:text-united-red transition">Subscribe <span class="inline-block ml-1 text-united-red transition group-hover:translate-x-1" aria-hidden="true">→</span></a></li>
+                <li><a href="./podcast.html" class="group text-white hover:text-united-red transition">Podcast <span class="inline-block ml-1 text-united-red transition group-hover:translate-x-1" aria-hidden="true">→</span></a></li>
+                <li><a href="https://forum.uwsonline.com" target="_blank" rel="noopener" class="group text-white hover:text-united-red transition">Forum <span class="inline-block ml-1 text-united-red transition group-hover:translate-x-1" aria-hidden="true">→</span></a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="site-footer"></div>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
