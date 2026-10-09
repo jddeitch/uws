@@ -45,153 +45,191 @@
     };
     </script>
     <link rel="stylesheet" href="./css/styles.css">
+
+    <!-- Structured data: who UWS is, for search engines and AI assistants -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://www.uwsonline.com/#organization",
+                "name": "United We Stand",
+                "alternateName": "UWS",
+                "url": "https://www.uwsonline.com/",
+                "logo": "https://www.uwsonline.com/images/uwslogo.svg",
+                "foundingDate": "1989",
+                "description": "Britain's best-selling independent Manchester United fanzine, written by match-going fans and edited by Andy Mitten since 1989.",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "43 Chapel Road",
+                    "addressLocality": "Manchester",
+                    "postalCode": "M22 4JN",
+                    "addressCountry": "GB"
+                },
+                "award": ["British Fanzine of the Year 2012", "British Fanzine of the Year 2019"]
+            },
+            {
+                "@type": "Periodical",
+                "@id": "https://www.uwsonline.com/#magazine",
+                "name": "United We Stand",
+                "url": "https://www.uwsonline.com/",
+                "startDate": "1989",
+                "about": { "@type": "SportsTeam", "name": "Manchester United" },
+                "publisher": { "@id": "https://www.uwsonline.com/#organization" },
+                "editor": { "@id": "https://www.uwsonline.com/#andy-mitten" }
+            },
+            {
+                "@type": "Person",
+                "@id": "https://www.uwsonline.com/#andy-mitten",
+                "name": "Andy Mitten",
+                "jobTitle": "Editor, United We Stand",
+                "description": "Editor of United We Stand since 1989. Writes for The Athletic and The National, and has written fourteen books, mostly about Manchester United.",
+                "worksFor": { "@id": "https://www.uwsonline.com/#organization" },
+                "sameAs": ["https://x.com/AndyMitten"]
+            },
+            {
+                "@type": "PodcastSeries",
+                "name": "United We Stand Podcast",
+                "url": "https://www.uwsonline.com/podcast.html",
+                "webFeed": "https://feeds.megaphone.fm/COMG9154050627",
+                "publisher": { "@id": "https://www.uwsonline.com/#organization" },
+                "sameAs": [
+                    "https://podcasts.apple.com/gb/podcast/united-we-stand-podcast/id1096678620",
+                    "https://open.spotify.com/show/1mMBm4LPDczdlgUsqgTD2G"
+                ]
+            }
+        ]
+    }
+    </script>
 </head>
 <body class="homepage bg-black text-white antialiased">
-    
+
     <!-- Navigation -->
     <div id="site-nav"></div>
-    
-    <!-- Hero Section -->
-    <section class="pt-12 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-b from-gray-900 to-black">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center lg:justify-center max-w-6xl mx-auto">
-                
-                <!-- Mobile: Content First (Brand + CTA above fold) -->
-                <div class="text-center lg:text-left space-y-4 lg:order-2">
-                    <h1 class="sr-only">United We Stand</h1>
-                    <img src="./images/uwslogo.svg" alt="United We Stand" class="w-full max-w-xs sm:max-w-sm lg:max-w-md mx-auto lg:mx-0">
-                    
-                    <!-- Since 1989 - centered on mobile, with line on desktop -->
-                    <div class="flex items-center justify-center lg:justify-start lg:space-x-4">
-                        <div class="hidden lg:block h-px w-12 bg-united-gold"></div>
-                        <p class="text-united-gold text-xs sm:text-sm font-bold tracking-wider uppercase">Since 1989</p>
-                    </div>
-                    
-                    <p class="text-lg sm:text-2xl text-gray-300 font-light leading-relaxed">
-                        A Manchester United Fanzine
-                    </p>
-                    
-                    <!-- Magazine Cover - on mobile only, above button -->
-                    <div class="flex justify-center lg:hidden pt-2">
-                        <img id="current-cover-mobile" 
-                             src="./images/mags/themag.jpg" 
-                             alt="United We Stand - Latest Issue" 
-                             class="rounded-lg shadow-2xl w-full max-w-[200px]">
-                    </div>
-                    
-                    <!-- Primary CTA - Below cover on mobile, side-by-side on desktop -->
-                    <div class="pt-2 lg:pt-4 flex flex-col lg:flex-row gap-4 items-center lg:items-start">
-                        <a id="hero-subscribe-btn" href="./subscribe.html" class="inline-block bg-united-red hover:bg-united-red-hover text-white shadow-lg shadow-united-red/20 px-8 py-3 sm:px-10 sm:py-4 rounded-lg font-bold text-base sm:text-lg tracking-refined transition">
-                            Subscribe Now
-                        </a>
-                        <!-- Learn More button moved here for desktop side-by-side layout -->
-                        <a href="./about.html" class="hidden lg:inline-block border border-white/20 text-white hover:border-white/40 hover:bg-white/5 px-8 py-3 sm:px-10 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition">
-                            Learn More
-                        </a>
-                    </div>
-                    
+
+    <!-- Hero -->
+    <section class="pt-16 sm:pt-24 pb-20 lg:pb-28 overflow-hidden bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-16 lg:gap-12 xl:gap-16 items-center">
+            <div class="text-center lg:text-left">
+                <h1 class="sr-only">United We Stand</h1>
+                <img src="./images/uwslogo.svg" alt="United We Stand" class="w-full max-w-xs sm:max-w-md lg:max-w-lg mx-auto lg:mx-0">
+
+                <div class="mt-8 flex items-center justify-center lg:justify-start gap-4">
+                    <div class="hidden lg:block h-px w-12 bg-united-red"></div>
+                    <p class="text-united-red text-sm font-bold tracking-[0.25em] uppercase">Since 1989</p>
                 </div>
-                
-                <!-- Magazine Cover - Desktop only, on left -->
-                <div class="hidden lg:flex justify-center lg:justify-start lg:order-1">
-                    <div class="relative">
-                        <img id="current-cover" 
-                             src="./images/mags/themag.jpg" 
-                             alt="United We Stand - Latest Issue" 
-                             class="rounded-lg shadow-2xl w-full max-w-xs flex-shrink-0">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- About Andy & UWS -->
-    <section class="py-16 bg-black">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="space-y-6">
-                <h2 class="text-3xl sm:text-4xl font-black text-white text-center">
-                    Independent Since 1989
-                </h2>
-                
-                <div class="space-y-4 text-lg text-gray-300 leading-relaxed text-left">
-                    <p>
-                        First published in <span class="text-united-gold font-semibold">1989</span>, United We Stand is the authentic voice of Manchester United supporters. Edited by <span class="text-united-gold font-semibold">Andy Mitten</span>, a lifelong Red who watches United home and away, UWS delivers honest, informed opinion from those who actually go to the games.
-                    </p>
-                    
-                    <p>
-                        <span class="text-united-gold font-semibold">Award-winning</span> and <span class="text-united-gold font-semibold">best-selling</span>, with over 300 issues published and named British Fanzine of the Year in 2012 and 2019, UWS is proudly independent — not owned by the club, not beholden to advertisers. Each of the 11 issues per season features 44 pages of analysis, opinion, and the truth about Manchester United.
-                    </p>
-                    
-                    <p class="text-xl text-gray-300 italic text-center">
-                        Influential. Incisive. Irreverent.
-                    </p>
-                </div>
-                
-                <div class="pt-4 text-center">
-                    <a href="./about.html" class="inline-block text-gray-400 hover:text-white font-bold text-lg transition">
-                        Read More About UWS →
+
+                <p class="mt-5 text-xl sm:text-2xl text-gray-300 leading-relaxed">
+                    A Manchester United fanzine
+                </p>
+
+                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-x-10 gap-y-6">
+                    <a id="hero-subscribe-btn" href="./subscribe.html" class="inline-block bg-united-red hover:bg-united-red-hover text-white shadow-lg shadow-united-red/20 px-10 py-4 rounded-lg font-bold text-lg tracking-refined transition">
+                        Subscribe Now
+                    </a>
+                    <a href="./about.html" class="group text-lg font-semibold text-white hover:text-united-red transition">
+                        About UWS <span class="inline-block ml-1 text-united-red transition group-hover:translate-x-1" aria-hidden="true">→</span>
                     </a>
                 </div>
             </div>
+
+            <!-- Cover stack: the current issue on the last two (kept fresh by scripts/fetch-latest-cover.js) -->
+            <div class="cover-stack w-52 sm:w-60 xl:w-72 mx-auto -translate-x-10 lg:translate-x-0 lg:mr-32">
+                <img src="./images/mags/previous-2.jpg" alt="" aria-hidden="true">
+                <img src="./images/mags/previous-1.jpg" alt="" aria-hidden="true">
+                <img src="./images/mags/themag.jpg" alt="United We Stand - Latest Issue">
+            </div>
         </div>
     </section>
-    
-    <!-- Subscribe CTA + Discovery -->
-    <section class="py-16 bg-gradient-to-b from-black to-gray-900">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <!-- Subscribe Banner -->
-            <div class="text-center mb-12">
-                <h2 class="text-3xl sm:text-4xl font-black text-white mb-4">
-                    Never Miss an Issue
-                </h2>
-                <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-                    11 issues per season, 44 pages of independent opinion. Print or digital.
+    <!-- Independent Since 1989 -->
+    <section>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 border-t border-white/10 grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-10 lg:gap-20">
+            <h2 class="text-4xl sm:text-6xl font-black uppercase tracking-tight leading-[0.95]">
+                Independent since 1989.
+            </h2>
+            <div class="space-y-6 text-lg text-gray-300 leading-relaxed">
+                <p>
+                    First published in <span class="text-white font-semibold">1989</span>, United We Stand is the authentic voice of Manchester United supporters. Edited by <span class="text-white font-semibold">Andy Mitten</span>, a lifelong Red who watches United home and away, UWS delivers honest, informed opinion from match-going fans.
                 </p>
-                <a href="./subscribe.html" class="inline-block bg-united-red hover:bg-united-red-hover text-white shadow-lg shadow-united-red/20 px-10 py-4 rounded-lg font-bold text-lg tracking-refined transition">
+                <p>
+                    <span class="text-white font-semibold">Award-winning</span> and <span class="text-white font-semibold">best-selling</span>, with over 300 issues published and named British Fanzine of the Year in 2012 and 2019, UWS is proudly and completely independent — not beholden to advertisers. Each of the 11 issues per season features 44 pages of analysis, opinion, and the truth about Manchester United.
+                </p>
+                <p class="pt-4 text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
+                    Influential. Incisive. Irreverent.
+                </p>
+                <a href="./about.html" class="group inline-block font-semibold text-white hover:text-united-red transition">
+                    Read more about UWS <span class="inline-block ml-1 text-united-red transition group-hover:translate-x-1" aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscribe -->
+    <section>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 border-t border-white/10 grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-24 items-end">
+            <div>
+                <h2 class="text-4xl sm:text-6xl font-black uppercase tracking-tight leading-[0.95]">
+                    Never miss<br>an issue.
+                </h2>
+                <p class="mt-6 text-lg text-gray-300 leading-relaxed max-w-md">
+                    Published 11 times a season, 44 pages an issue. Print through your letterbox, or digital on any device.
+                </p>
+            </div>
+            <div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+                    <div class="pb-8 sm:pb-0 sm:pr-10">
+                        <p class="text-sm font-bold uppercase tracking-[0.25em] text-gray-400">Print from</p>
+                        <p class="scoreboard text-united-red text-4xl sm:text-5xl mt-5" data-price="print_uk">£44<span class="scoreboard-point">.</span>99</p>
+                    </div>
+                    <div class="pt-8 sm:pt-0 sm:pl-10">
+                        <p class="text-sm font-bold uppercase tracking-[0.25em] text-gray-400">Digital from</p>
+                        <p class="scoreboard text-united-red text-4xl sm:text-5xl mt-5" data-price="digital_quarterly">£7<span class="scoreboard-point">.</span>99</p>
+                    </div>
+                </div>
+                <a href="./subscribe.html" class="mt-10 block sm:inline-block text-center bg-united-red hover:bg-united-red-hover text-white shadow-lg shadow-united-red/20 px-10 py-4 rounded-lg font-bold text-lg tracking-refined transition">
                     Subscribe Now
                 </a>
             </div>
+        </div>
+    </section>
 
-            <!-- Divider -->
-            <div class="border-t border-white/10 pt-10">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
-                    <!-- Podcast -->
-                    <a href="./podcast.html" class="group flex items-start gap-5 bg-surface rounded-xl p-8 hover:bg-white/5 transition">
-                        <div class="flex-shrink-0 w-14 h-14 bg-black rounded-lg flex items-center justify-center">
-                            <svg class="w-8 h-8 text-united-red" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-2">Podcast</h3>
-                            <p class="text-gray-400">Interviews, post-match commentary, and honest analysis.</p>
-                        </div>
-                    </a>
-
-                    <!-- Forum -->
-                    <a href="https://forum.uwsonline.com" target="_blank" class="group flex items-start gap-5 bg-surface rounded-xl p-8 hover:bg-white/5 transition">
-                        <div class="flex-shrink-0 w-14 h-14 bg-black rounded-lg flex items-center justify-center">
-                            <svg class="w-8 h-8 text-united-red" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
-                                <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-white mb-2">Forum</h3>
-                            <p class="text-gray-400">Join thousands of Reds discussing everything United.</p>
-                        </div>
-                    </a>
-
-                </div>
+    <!-- More from UWS -->
+    <section>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-white/10">
+            <h2 class="text-sm font-bold uppercase tracking-[0.25em] text-gray-400 mb-12">More from UWS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/10">
+                <a href="./podcast.html" class="group flex items-start gap-5 pb-10 md:pb-0 md:pr-12">
+                    <svg class="flex-shrink-0 w-7 h-7 mt-1 text-united-red" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"/>
+                    </svg>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-united-red transition">
+                            Podcast <span class="inline-block ml-1 text-united-red transition group-hover:translate-x-1" aria-hidden="true">→</span>
+                        </h3>
+                        <p class="text-gray-400 mt-2">Interviews, post-match commentary, and honest analysis.</p>
+                    </div>
+                </a>
+                <a href="https://forum.uwsonline.com" target="_blank" rel="noopener" class="group flex items-start gap-5 pt-10 md:pt-0 md:pl-12">
+                    <svg class="flex-shrink-0 w-7 h-7 mt-1 text-united-red" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"/>
+                        <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"/>
+                    </svg>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white group-hover:text-united-red transition">
+                            Forum <span class="inline-block ml-1 text-united-red transition group-hover:translate-x-1" aria-hidden="true">→</span>
+                        </h3>
+                        <p class="text-gray-400 mt-2">Join thousands of Reds discussing everything United.</p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
-    
+
     <!-- Footer -->
     <div id="site-footer"></div>
-    
+
     <!-- JavaScript -->
     <script src="./js/config.js"></script>
     <script src="./js/main.js"></script>

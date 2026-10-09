@@ -21,11 +21,8 @@ setTimeout(function initHomeNav() {
 
         // Show nav ONLY when Subscribe button is completely scrolled off screen
         // btnRect.bottom < 0 means the bottom of the button is above the viewport
-        if (btnRect.bottom < 0) {
-            nav.style.transform = 'translateY(0)';
-        } else {
-            nav.style.transform = 'translateY(-100%)';
-        }
+        // (styles.css also shows it while it has keyboard focus)
+        nav.classList.toggle('is-visible', btnRect.bottom < 0);
     }
 
     // Set initial state (CSS already has transition and initial hide)

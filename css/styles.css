@@ -4,10 +4,12 @@
  * Single source of truth for all styles.
  * Tailwind handles utilities; this file handles:
  *   1. Base typography (font-family, Google Fonts import)
- *   2. Homepage mobile nav auto-hide behavior
+ *   2. Scoreboard prices (Doto)
+ *   3. The magazine cover stack
+ *   4. Homepage nav auto-hide behavior
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@900&family=Inter:wght@400;600;700;900&display=swap');
 
 /* ---- Base ---- */
 
@@ -15,17 +17,56 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+/* Sizes are set per page with Tailwind classes */
 body h1 {
-    font-size: 2.25rem;    /* text-4xl */
     font-weight: 900;      /* font-black */
     color: white;
     text-transform: uppercase;
 }
 
-@media (min-width: 640px) {
-    body h1 {
-        font-size: 3rem;   /* text-5xl */
-    }
+/* ---- Scoreboard numerals: dot-matrix, like the masthead and the stadium board ---- */
+
+.scoreboard {
+    font-family: 'Doto', ui-monospace, monospace;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(204, 0, 0, 0.35);
+}
+
+.scoreboard-point {
+    font-family: 'Inter', sans-serif;
+}
+
+/* ---- Cover stack: back issues fan out from behind the current one ---- */
+
+.cover-stack {
+    position: relative;
+}
+
+.cover-stack img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    aspect-ratio: 69 / 100;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.9);
+    transform-origin: 50% 100%;
+    transform: var(--fan);
+    animation: cover-fan 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
+}
+
+.cover-stack img:nth-child(1) { --fan: translateX(34%) rotate(12deg); }
+.cover-stack img:nth-child(2) { --fan: translateX(17%) rotate(6deg); }
+.cover-stack img:nth-child(3) { --fan: rotate(-3deg); position: relative; }
+
+@keyframes cover-fan {
+    from { transform: none; }
+    to   { transform: var(--fan); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cover-stack img { animation: none; }
 }
 
 /* ---- Homepage only: nav hide (revealed on scroll past hero) ---- */
@@ -33,4 +74,10 @@ body h1 {
 .homepage #site-nav nav {
     transform: translateY(-100%);
     transition: transform 0.3s ease-in-out;
+}
+
+/* Shown once the hero Subscribe button scrolls away, or when a keyboard user tabs into it */
+.homepage #site-nav nav.is-visible,
+.homepage #site-nav nav:focus-within {
+    transform: none;
 }

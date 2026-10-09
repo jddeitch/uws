@@ -46,51 +46,56 @@
     <!-- Navigation -->
     <div id="site-nav"></div>
 
-    <!-- Hero Section -->
-    <div class="pt-24 pb-12 bg-gradient-to-b from-gray-900 to-black">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="mb-4">
-                <span class="text-united-red">United We Stand</span> Podcast
+    <!-- Hero -->
+    <section class="pt-28 pb-14 lg:pt-36 lg:pb-16 bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-united-red text-sm font-bold uppercase tracking-[0.25em] mb-6">Podcast</p>
+            <h1 class="text-5xl sm:text-7xl xl:text-8xl leading-[0.9] tracking-tight">
+                The UWS<br>podcast.
             </h1>
-            <p class="text-xl text-gray-300 leading-relaxed">
-                Interviews, post-match commentary, and analysis with the UWS team
+            <p class="mt-8 text-lg sm:text-xl text-gray-300 leading-relaxed max-w-xl">
+                Interviews, post-match commentary, and analysis with the UWS team.
             </p>
         </div>
-    </div>
+    </section>
 
-    <!-- Podcast Player -->
-    <section class="py-16 bg-gradient-to-b from-black to-gray-900">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Player -->
+    <section>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 lg:pb-28">
+            <!-- Megaphone Playlist Embed -->
+            <iframe
+                width="100%"
+                height="482"
+                class="block max-w-full rounded-lg"
+                src="https://playlist.megaphone.fm/?p=COMG9154050627"
+                title="United We Stand Podcast">
+            </iframe>
 
-            <!-- AudioBoom Channel Embed -->
-            <div class="mb-12">
-                <iframe
-                    width="100%"
-                    height="500"
-                    class="bg-transparent block max-w-full rounded-lg"
-                    src="https://embeds.audioboom.com/publishing/playlist/v4?boo_content_type=channel&data_for_content_type=504284&image_option=small&link_color=C00&player_theme=dark&show_subscribe_button=true"
-                    title="United We Stand Podcast">
-                </iframe>
-            </div>
-
-            <!-- CTA -->
-            <div class="text-center">
-                <p class="text-gray-300 mb-6">
-                    Listen to all episodes on AudioBoom or subscribe in your favourite podcast app.
+            <div class="mt-14 pt-10 border-t border-white/10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+                <p class="text-lg text-gray-300 max-w-md">
+                    Listen to all episodes on Apple Podcasts, Spotify, or your favourite podcast app.
                 </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="https://audioboom.com/channels/504284-united-we-stand-podcast"
-                       target="_blank"
-                       class="inline-flex items-center space-x-2 bg-united-red hover:bg-united-red-hover text-white shadow-lg shadow-united-red/20 px-8 py-4 rounded-lg font-bold text-lg tracking-refined transition">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://podcasts.apple.com/gb/podcast/united-we-stand-podcast/id1096678620"
+                       target="_blank" rel="noopener"
+                       class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-united-red hover:bg-united-red-hover text-white shadow-lg shadow-united-red/20 px-8 py-4 rounded-lg font-bold text-lg tracking-refined transition">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                             <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"/>
                         </svg>
-                        <span>Listen on AudioBoom</span>
+                        <span>Apple Podcasts</span>
                     </a>
-                    <a href="https://audioboom.com/channels/504284.rss"
-                       target="_blank"
-                       class="inline-flex items-center space-x-2 border border-white/20 text-white hover:border-white/40 hover:bg-white/5 px-8 py-4 rounded-lg font-semibold text-lg transition">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <a href="https://open.spotify.com/show/1mMBm4LPDczdlgUsqgTD2G"
+                       target="_blank" rel="noopener"
+                       class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 border border-white/20 text-white hover:border-white/40 hover:bg-white/5 px-8 py-4 rounded-lg font-semibold text-lg transition">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
+                        </svg>
+                        <span>Spotify</span>
+                    </a>
+                    <a href="https://feeds.megaphone.fm/COMG9154050627"
+                       target="_blank" rel="noopener"
+                       class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 border border-white/20 text-white hover:border-white/40 hover:bg-white/5 px-8 py-4 rounded-lg font-semibold text-lg transition">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                             <path d="M5 3a1 1 0 000 2c5.523 0 10 4.477 10 10a1 1 0 102 0C17 8.373 11.627 3 5 3z"/>
                             <path d="M4 9a1 1 0 011-1 7 7 0 017 7 1 1 0 11-2 0 5 5 0 00-5-5 1 1 0 01-1-1z"/>
                             <path d="M3 15a2 2 0 114 0 2 2 0 01-4 0z"/>

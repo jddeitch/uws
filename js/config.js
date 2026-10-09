@@ -19,13 +19,6 @@ const UWSConfig = {
         enabled: false // Set to true when you add the token
     },
     
-    // Site URLs
-    urls: {
-        forum: 'https://forum.uwsonline.com',
-        exactEditions: 'https://shop.exacteditions.com/united-we-stand',
-        podcast: 'https://audioboom.com/channel/united-we-stand-podcast'
-    },
-    
     // Contact information
     contact: {
         email: 'uwsmag@yahoo.co.uk',
@@ -125,7 +118,8 @@ function initializeMobileMenu() {
     
     if (mobileMenuButton && mobileMenu) {
         mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
+            const isOpen = !mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', isOpen);
         });
     }
 }

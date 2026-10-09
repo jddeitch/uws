@@ -2,48 +2,77 @@ name: Update Magazine Cover
 
 on:
   schedule:
-    # Run daily at 6:00 AM UTC (7:00 AM BST / 6:00 AM GMT)
-    - cron: '0 6 * * *'
+    # Twice daily, off the hour: GitHub delays or drops scheduled runs when
+    # busy, especially at the top of the hour
+    - cron: '23 5,17 * * *'
   workflow_dispatch: # Allows manual trigger from GitHub UI
 
 permissions:
   contents: write
 
+concurrency:
+  group: update-cover
+  cancel-in-progress: false
+
 jobs:
   update-cover:
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 10
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: '20'
-      
+          node-version: '22'
+
       - name: Install dependencies
         run: npm install
-      
-      - name: Fetch latest cover
+
+      # Allowed to fail so anything it did save (e.g. a new current cover when
+      # the back issues failed) is still committed; the last step fails the run
+      - name: Fetch covers
+        id: fetch
+        continue-on-error: true
         run: node scripts/fetch-latest-cover.js
-      
+
       - name: Check for changes
         id: git-check
         run: |
-          git diff --exit-code data/current-issue.json images/mags/ images/og-image.jpg || echo "changed=true" >> $GITHUB_OUTPUT
-      
+          git add data/current-issue.json images/mags/ images/og-image.jpg
+          git diff --cached --quiet || echo "changed=true" >> $GITHUB_OUTPUT
+
       - name: Commit and push if changed
         if: steps.git-check.outputs.changed == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add data/current-issue.json images/mags/ images/og-image.jpg
           git commit -m "🤖 Auto-update: Latest magazine cover from Exact Editions"
+          git pull --rebase --autostash
           git push
-      
-      - name: No changes
+
+      # GitHub disables scheduled workflows after 60 days without repository
+      # activity. Between issues (e.g. the summer break) nothing is committed,
+      # so after 45 quiet days an empty commit keeps the schedule running.
+      - name: Keep the schedule alive
         if: steps.git-check.outputs.changed != 'true'
-        run: echo "✅ Cover is already up to date"
+        run: |
+          last_commit=$(git log -1 --format=%ct)
+          if [ $(( $(date +%s) - last_commit )) -gt $(( 45 * 86400 )) ]; then
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git commit --allow-empty -m "🤖 Keep cover update schedule active"
+            git pull --rebase --autostash
+            git push
+          else
+            echo "✅ Recent activity - no keepalive needed"
+          fi
+
+      # Red run + GitHub's failure email if Exact Editions couldn't be scraped
+      - name: Report fetch failure
+        if: steps.fetch.outcome == 'failure'
+        run: |
+          echo "❌ Cover fetch failed - see the 'Fetch covers' step log"
+          exit 1

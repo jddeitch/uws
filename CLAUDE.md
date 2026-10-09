@@ -68,11 +68,11 @@ When code is reviewed, fix every issue found. "We'll fix it later" means it neve
 | Layer | Tool |
 |---|---|
 | Markup | Static HTML (5 pages: index, about, subscribe, podcast, thankyou) |
-| Styling | Tailwind CSS v4 via CDN + `css/styles.css` (central stylesheet) |
+| Styling | Tailwind CSS v3 Play CDN + `css/styles.css` (central stylesheet) |
 | JavaScript | Vanilla JS, no bundler, no framework |
-| Fonts | Inter (400, 600, 700, 900) via Google Fonts |
+| Fonts | Inter (400, 600, 700, 900) + Doto (900, scoreboard prices) via Google Fonts |
 | Hosting | GitHub Pages, auto-deploy on push to `main` |
-| Automation | GitHub Actions: daily cover update from Exact Editions |
+| Automation | GitHub Actions: twice-daily cover update from Exact Editions |
 | Payments | PayPal forms (print), Exact Editions redirect (digital) |
 
 ## Design System
@@ -83,15 +83,20 @@ Full visual reference: `_internal/design-system.html`
 |---|---|---|
 | `united-red` | `#CC0000` | Primary brand, CTA buttons, headings, icons |
 | `united-red-hover` | `#AA0000` | Button hover state only |
-| `united-gold` | `#FFD700` | Accent text, "Since 1989". Do not add more gold. |
+| `united-gold` | `#FFD700` | Legacy — removed from the site in the 2026 redesign (it competed with the red). Don't reintroduce. |
 | `gradient-red-dark` | `#1a0000` | Legacy — kept in config but not actively used |
-| `surface` | `#0A0A0A` | Card backgrounds on black pages |
+| `surface` | `#0A0A0A` | Legacy — kept in config but not actively used |
 
-- Dark theme: `bg-black`, `bg-gray-900` for nav, gradients between the two
-- Typography: Inter, uppercase headings, `tracking-refined` (0.05em) on buttons
-- Cards: `bg-white/5 border border-white/10 rounded-xl`
-- Buttons: solid red `bg-united-red hover:bg-united-red-hover text-white shadow-lg shadow-united-red/20 rounded-lg font-bold tracking-refined transition`
+- Dark theme: `bg-black`, `bg-gray-900` for nav, `from-gray-900 to-black` gradient behind each page's hero
+- **No boxed cards.** Structure comes from space, big headings and hairline dividers (`border-white/10`, `divide-white/10`). Sections sit in `max-w-6xl` containers separated by `border-t border-white/10`.
+- Typography: Inter. Page `h1`: `text-5xl sm:text-7xl xl:text-8xl leading-[0.9] tracking-tight` (uppercase via `styles.css`). Section `h2`: `text-4xl sm:text-6xl font-black uppercase tracking-tight leading-[0.95]`. Labels/eyebrows: `text-sm font-bold uppercase tracking-[0.25em]` (red above a page `h1`, `gray-400` otherwise).
+- Scoreboard prices: `.scoreboard` in `styles.css` (Doto, dot-matrix, echoes the masthead) in `text-united-red`. Doto's full stop looks like a plus, so the point is a `.scoreboard-point` span in Inter — `loadPrices()` in `main.js` builds this from `data/pricing.json`; write fallbacks the same way.
+- Cover stack: `.cover-stack` in `styles.css` — `previous-2.jpg`, `previous-1.jpg`, then the current issue (`themag.jpg`), all kept fresh by the cover script.
+- Text links: white, `hover:text-united-red`, with a red `→` (or `↓` for in-page jumps) in an `inline-block` span that nudges on hover.
+- Buttons: solid red `bg-united-red hover:bg-united-red-hover text-white shadow-lg shadow-united-red/20 rounded-lg font-bold tracking-refined transition`; secondary is `border border-white/20` outline
+- Mobile: give grids a base `grid-cols-1` (a bare `lg:grid-cols-*` lets a long uppercase word blow out the column) and check there's no horizontal scroll at 320px.
 - No inline styles. No hex codes in HTML. Use Tailwind tokens only.
+- Only exception to the palette: `green-500` for the success tick on `thankyou.html`.
 
 ## File Structure
 
@@ -140,7 +145,7 @@ Use compound-engineering review agents automatically at these points:
 - **Tailwind is CDN mode (Play CDN), not a build step.** The site loads `https://cdn.tailwindcss.com` as a `<script>` tag — Tailwind v3 compiles classes in the browser at runtime. There is no `tailwindcss` in package.json, no PostCSS, no build pipeline. This means the `tailwind.config` **must** be set via an inline `<script>` block (`tailwind.config = {...}`) on every page — it cannot live in a CSS file. The custom colors (`united-red`, `united-red-hover`, `united-gold`, `gradient-red-dark`, `surface`) and `tracking-refined` only work because of this JS config. Don't try to move the config into CSS or create a separate tailwind-config.js file. If you want ONE place for it, you'd need to add a build step.
 - **Relative paths everywhere** — GitHub Pages requires `./` prefix on all links and assets. Never use absolute paths like `/images/...`.
 - **Component loading is async** — nav and footer load via `fetch()`. Any JS that touches nav elements must wait for the component to load (see `homepage-nav.js` for the pattern).
-- **Cover image is auto-updated** — `scripts/fetch-latest-cover.js` runs daily via GitHub Actions. Don't manually manage `data/current-issue.json` unless necessary.
+- **Cover images are auto-updated** — `scripts/fetch-latest-cover.js` runs twice daily via GitHub Actions and saves the current cover (`themag.jpg`) plus the two previous issues (`previous-1.jpg`, `previous-2.jpg`). Don't manually manage `data/current-issue.json` unless necessary. The script exits non-zero on any failure so a broken scrape shows as a failed run. GitHub disables scheduled workflows after 60 days without commits (this happened over summer 2026), so the workflow makes an empty keepalive commit after 45 quiet days.
 
 ---
 

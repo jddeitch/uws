@@ -3,35 +3,44 @@
  * Handles navigation, dynamic content loading, and site-wide functionality
  */
 
-// Load current issue data on page load
+// Load prices on page load
 document.addEventListener('DOMContentLoaded', function() {
-    loadCurrentIssue();
+    loadPrices();
 });
 
 /**
- * Load current issue information from data file
+ * Fill prices from data/pricing.json (the values in the HTML are fallbacks).
+ * Doto's full stop is a plus-shaped dot cluster, so scoreboard prices get
+ * their decimal point set in Inter.
  */
-async function loadCurrentIssue() {
+async function loadPrices() {
+    if (!document.querySelector('[data-price], [data-paypal-amount]')) return;
     try {
-        const response = await fetch('./data/current-issue.json');
-        const data = await response.json();
+        const response = await fetch('./data/pricing.json');
+        const pricing = await response.json();
 
-        // Prefer local cover (updated by GitHub Action) to avoid flash.
-        // Only fall back to external URL if local path isn't set.
-        const coverSrc = data.coverImage || './images/mags/themag.jpg';
-        const altText = `United We Stand Issue ${data.issueNumber || 'Latest'}`;
-
-        // Update both desktop and mobile cover images
-        const covers = document.querySelectorAll('#current-cover, #current-cover-mobile');
-        covers.forEach(img => {
-            img.src = coverSrc;
-            img.alt = altText;
+        document.querySelectorAll('[data-price]').forEach(el => {
+            const price = pricing[el.dataset.price];
+            if (!price) return;
+            const [pounds, pence] = String(price).split('.');
+            el.textContent = '£' + pounds;
+            if (pence === undefined) return;
+            if (el.classList.contains('scoreboard')) {
+                const point = document.createElement('span');
+                point.className = 'scoreboard-point';
+                point.textContent = '.';
+                el.append(point, pence);
+            } else {
+                el.append('.' + pence);
+            }
         });
 
+        document.querySelectorAll('[data-paypal-amount]').forEach(el => {
+            const price = pricing[el.dataset.paypalAmount];
+            if (price) el.value = price;
+        });
     } catch (error) {
-        console.error('Error loading current issue:', error);
-        // Fallback to default content - already set in HTML
+        console.error('Error loading prices:', error);
+        // Fallback prices are already in the HTML
     }
 }
-
-
