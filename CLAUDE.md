@@ -123,10 +123,11 @@ Nav and footer are HTML fragments in `/components/`, loaded client-side via `fet
 
 ## Automated Agent Reviews
 
-Use compound-engineering review agents automatically at these points:
+*(The compound-engineering review agents were decommissioned on 2026-08-09 — don't use them.)*
 
 **After implementing code changes (before saying "done"):**
-- `compound-engineering:review:code-simplicity-reviewer` — YAGNI, dead code, simplification
+- `/code-review` — correctness, simplification, dead code
+- `jd-css-reviewer` agent (`.claude/agents/review/`) — for any HTML/CSS/Tailwind change, enforces the design system above
 
 **When to skip reviews:**
 - One-line fixes, typo corrections, comment updates
